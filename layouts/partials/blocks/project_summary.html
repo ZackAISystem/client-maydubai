@@ -1,0 +1,97 @@
+{{ $page := .page }}
+{{ $p := .project }}
+{{ $b := .block }}
+{{ $i := (or .scope_index 0) }}
+{{ if not $p }}{{ $p = dict }}{{ end }}
+
+{{ $scope := printf "zf-scope-project-summary-%d" $i }}
+
+{{ partial "design_system/block_scope_vars.html" (dict
+  "block_name" "project_summary"
+  "block_variant" (or $b.block_variant "project_summary_default")
+  "applies_to" "all"
+  "scope_class" $scope
+) }}
+
+{{ $title := "" }}
+{{ with $page.Params.project_summary_title }}{{ $title = . }}{{ end }}
+{{ if and (eq $title "") (isset $p "project_summary_title") }}{{ $title = $p.project_summary_title }}{{ end }}
+{{ if eq $title "" }}{{ $title = "Project summary" }}{{ end }}
+
+{{ $subtitle := "" }}
+{{ with $page.Params.project_summary_subtitle }}{{ $subtitle = . }}{{ end }}
+{{ if and (eq $subtitle "") (isset $p "project_summary_subtitle") }}{{ $subtitle = $p.project_summary_subtitle }}{{ end }}
+
+{{ $deliveryValue := partial "helpers/get_param.html" (dict "page" $page "project" $p "key" "summary_delivery_value") }}
+{{ $deliveryLabel := partial "helpers/get_param.html" (dict "page" $page "project" $p "key" "summary_delivery_label") }}
+{{ if eq $deliveryLabel "" }}{{ $deliveryLabel = "Delivery Date" }}{{ end }}
+
+{{ $developerValue := partial "helpers/get_param.html" (dict "page" $page "project" $p "key" "summary_developer_value") }}
+{{ $developerLabel := partial "helpers/get_param.html" (dict "page" $page "project" $p "key" "summary_developer_label") }}
+{{ if eq $developerLabel "" }}{{ $developerLabel = "Master Developer" }}{{ end }}
+
+{{ $typeValue := partial "helpers/get_param.html" (dict "page" $page "project" $p "key" "summary_type_value") }}
+{{ $typeLabel := partial "helpers/get_param.html" (dict "page" $page "project" $p "key" "summary_type_label") }}
+{{ if eq $typeLabel "" }}{{ $typeLabel = "Property Type" }}{{ end }}
+
+{{ $priceCurrency := partial "helpers/get_param.html" (dict "page" $page "project" $p "key" "summary_price_currency") }}
+{{ $priceValue := partial "helpers/get_param.html" (dict "page" $page "project" $p "key" "summary_price_value") }}
+{{ $priceLabel := partial "helpers/get_param.html" (dict "page" $page "project" $p "key" "summary_price_label") }}
+{{ if eq $priceLabel "" }}{{ $priceLabel = "Starting Price" }}{{ end }}
+
+{{ $hasFlat := or (ne $deliveryValue "") (ne $developerValue "") (ne $typeValue "") (ne $priceValue "") }}
+{{ if and (not $hasFlat) (isset $p "summary") }}
+  {{ $s := index $p "summary" }}
+  {{ if and $s (isset $s "facts") }}
+    {{ range (index $s "facts") }}
+      {{ $lbl := (or (index . "label") "") }}
+      {{ $val := (or (index . "value") "") }}
+      {{ $lblLow := lower (printf "%v" $lbl) }}
+
+      {{ if and (eq $deliveryValue "") (or (in $lblLow "delivery") (in $lblLow "handover")) }}
+        {{ $deliveryLabel = (printf "%v" $lbl) }}{{ $deliveryValue = (printf "%v" $val) }}
+      {{ end }}
+      {{ if and (eq $developerValue "") (in $lblLow "developer") }}
+        {{ $developerLabel = (printf "%v" $lbl) }}{{ $developerValue = (printf "%v" $val) }}
+      {{ end }}
+      {{ if and (eq $typeValue "") (or (in $lblLow "type") (in $lblLow "property")) }}
+        {{ $typeLabel = (printf "%v" $lbl) }}{{ $typeValue = (printf "%v" $val) }}
+      {{ end }}
+      {{ if and (eq $priceValue "") (in $lblLow "price") }}
+        {{ $priceLabel = (printf "%v" $lbl) }}{{ $priceValue = (printf "%v" $val) }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+<section class="zf-project-summary {{ $scope }}" id="summary">
+  <div class="zf-container">
+    <header class="zf-project-summary__header">
+      <h2 class="zf-project-summary__title">{{ $title }}</h2>
+      {{ if $subtitle }}<p class="zf-project-summary__subtitle">{{ $subtitle }}</p>{{ end }}
+    </header>
+
+    <div class="zf-project-summary__grid" aria-label="Key project data">
+      <article class="zf-summary-card zf-summary-card--delivery">
+        <div class="zf-summary-card__value">{{ $deliveryValue }}</div>
+        <div class="zf-summary-card__label">{{ $deliveryLabel }}</div>
+      </article>
+
+      <article class="zf-summary-card zf-summary-card--developer">
+        <div class="zf-summary-card__value">{{ $developerValue }}</div>
+        <div class="zf-summary-card__label">{{ $developerLabel }}</div>
+      </article>
+
+      <article class="zf-summary-card zf-summary-card--type">
+        <div class="zf-summary-card__value">{{ $typeValue }}</div>
+        <div class="zf-summary-card__label">{{ $typeLabel }}</div>
+      </article>
+
+      <article class="zf-summary-card zf-summary-card--price">
+        <div class="zf-summary-card__currency">{{ $priceCurrency }}</div>
+        <div class="zf-summary-card__price">{{ $priceValue }}</div>
+        <div class="zf-summary-card__label">{{ $priceLabel }}</div>
+      </article>
+    </div>
+  </div>
+</section>

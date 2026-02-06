@@ -1,0 +1,154 @@
+{{ $page := .page }}
+{{ $p := or .project .p }}
+{{ $b := .block }}
+{{ $i := (or .scope_index 0) }}
+
+{{ if not $p }}{{ $p = dict }}{{ end }}
+
+{{ $scope := printf "zf-scope-units-gallery-%d" $i }}
+
+{{ partial "design_system/block_scope_vars.html" (dict
+  "block_name" "units_gallery"
+  "block_variant" (or $b.block_variant "units_gallery_default")
+  "applies_to" "all"
+  "scope_class" $scope
+) }}
+
+{{/* images */}}
+{{ $imgs := slice }}
+
+{{ with $page.Params.units_gallery }}
+  {{ range . }}
+    {{ $v := trim . " \n\r\t" }}
+    {{ if ne $v "" }}{{ $imgs = $imgs | append $v }}{{ end }}
+  {{ end }}
+{{ end }}
+
+{{ if eq (len $imgs) 0 }}
+  {{ with (index $p "units_gallery") }}
+    {{ range . }}
+      {{ $v := trim . " \n\r\t" }}
+      {{ if ne $v "" }}{{ $imgs = $imgs | append $v }}{{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{ if eq (len $imgs) 0 }}
+  {{ if and (isset $p "units_gallery_1") $p.units_gallery_1 }}{{ $imgs = $imgs | append $p.units_gallery_1 }}{{ end }}
+  {{ if and (isset $p "units_gallery_2") $p.units_gallery_2 }}{{ $imgs = $imgs | append $p.units_gallery_2 }}{{ end }}
+  {{ if and (isset $p "units_gallery_3") $p.units_gallery_3 }}{{ $imgs = $imgs | append $p.units_gallery_3 }}{{ end }}
+  {{ if and (isset $p "units_gallery_4") $p.units_gallery_4 }}{{ $imgs = $imgs | append $p.units_gallery_4 }}{{ end }}
+  {{ if and (isset $p "units_gallery_5") $p.units_gallery_5 }}{{ $imgs = $imgs | append $p.units_gallery_5 }}{{ end }}
+{{ end }}
+
+{{/* normalize each image path */}}
+{{ $norm := slice }}
+{{ range $imgs }}
+  {{ $v := trim . " \n\r\t" }}
+  {{ if hasPrefix $v "/static/" }}{{ $v = replace $v "/static/" "/" }}{{ end }}
+  {{ if hasPrefix $v "/img/" }}{{ $v = replace $v "/img/" "/images/projects/" }}{{ end }}
+  {{ $norm = $norm | append ($v | relURL) }}
+{{ end }}
+{{ $imgs = $norm }}
+
+{{/* header */}}
+{{ $title := "" }}
+{{ with $page.Params.units_gallery_title }}{{ $title = . }}{{ end }}
+{{ if and (eq $title "") (isset $p "units_gallery_title") }}{{ $title = $p.units_gallery_title }}{{ end }}
+{{ if eq $title "" }}{{ $title = "Available Units" }}{{ end }}
+
+{{/* panel */}}
+{{ $bedMain := "" }}
+{{ with $page.Params.units_bed_main }}{{ $bedMain = . }}{{ end }}
+{{ if and (eq $bedMain "") (isset $p "units_bed_main") }}{{ $bedMain = $p.units_bed_main }}{{ end }}
+{{ if eq $bedMain "" }}{{ $bedMain = "1 Bedroom" }}{{ end }}
+
+{{ $bedOptions := "" }}
+{{ with $page.Params.units_bed_options }}{{ $bedOptions = . }}{{ end }}
+{{ if and (eq $bedOptions "") (isset $p "units_bed_options") }}{{ $bedOptions = $p.units_bed_options }}{{ end }}
+{{ if eq $bedOptions "" }}{{ $bedOptions = "2|3|4" }}{{ end }}
+
+{{ $price := "" }}
+{{ with $page.Params.units_price_from }}{{ $price = . }}{{ end }}
+{{ if and (eq $price "") (isset $p "units_price_from") }}{{ $price = $p.units_price_from }}{{ end }}
+{{ if eq $price "" }}{{ $price = "AED 5,500,000" }}{{ end }}
+
+{{ $area := "" }}
+{{ with $page.Params.units_area_from }}{{ $area = . }}{{ end }}
+{{ if and (eq $area "") (isset $p "units_area_from") }}{{ $area = $p.units_area_from }}{{ end }}
+{{ if eq $area "" }}{{ $area = "From 840 SQFT" }}{{ end }}
+
+{{ $cta := "" }}
+{{ with $page.Params.units_cta_text }}{{ $cta = . }}{{ end }}
+{{ if and (eq $cta "") (isset $p "units_cta_text") }}{{ $cta = $p.units_cta_text }}{{ end }}
+{{ if eq $cta "" }}{{ $cta = "Book a consultation" }}{{ end }}
+
+{{ if gt (len $imgs) 0 }}
+<section class="zf-units-gallery {{ $scope }}" id="units" data-units-gallery data-units-scope="{{ $scope }}">
+  <div class="zf-units-gallery__header">
+    <h2 class="zf-units-gallery__title">{{ $title }}</h2>
+  </div>
+
+  <div class="zf-units-gallery__frame" data-units-frame data-images='{{ jsonify $imgs }}'>
+    <img class="zf-units-gallery__img" data-units-img src="{{ index $imgs 0 }}" alt="Unit image">
+
+    <button class="zf-units-gallery__nav zf-units-gallery__nav--prev" type="button" data-units-prev aria-label="Previous photo">
+      <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" focusable="false">
+        <path d="M15 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+
+    <button class="zf-units-gallery__nav zf-units-gallery__nav--next" type="button" data-units-next aria-label="Next photo">
+      <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" focusable="false">
+        <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+
+    <div class="zf-units-gallery__panel">
+      <div class="zf-units-gallery__beds">
+        <span class="zf-units-gallery__beds-main">{{ $bedMain }}</span>
+        <span class="zf-units-gallery__beds-sep">|</span>
+        <span class="zf-units-gallery__beds-rest">{{ replace $bedOptions "|" " | " }}</span>
+      </div>
+
+      <div class="zf-units-gallery__stats">
+        <span class="zf-units-gallery__stat">{{ $price }}</span>
+        <span class="zf-units-gallery__stat">{{ $area }}</span>
+      </div>
+
+      <button class="zf-units-gallery__cta" type="button">{{ $cta }}</button>
+    </div>
+  </div>
+</section>
+
+<script>
+(() => {
+  const root = document.querySelector('[data-units-scope="{{ $scope }}"]');
+  if (!root) return;
+
+  const frame = root.querySelector('[data-units-frame]');
+  if (!frame) return;
+
+  let images = [];
+  try { images = JSON.parse(frame.getAttribute('data-images') || '[]'); } catch(e) { images = []; }
+  if (!images.length) return;
+
+  const imgEl  = frame.querySelector('[data-units-img]');
+  const prevBtn = frame.querySelector('[data-units-prev]');
+  const nextBtn = frame.querySelector('[data-units-next]');
+
+  let idx = 0;
+
+  const render = () => {
+    imgEl.src = images[idx];
+    prevBtn.disabled = (idx === 0);
+    nextBtn.disabled = (idx === images.length - 1);
+  };
+
+  prevBtn.addEventListener('click', () => { if (idx > 0) { idx -= 1; render(); }});
+  nextBtn.addEventListener('click', () => { if (idx < images.length - 1) { idx += 1; render(); }});
+
+  render();
+})();
+</script>
+{{ end }}

@@ -1,0 +1,82 @@
+{{ $page := .page }}
+{{ $p := .project }}
+{{ $b := .block }}
+{{ $i := (or .scope_index 0) }}
+
+{{ if not $p }}{{ $p = dict }}{{ end }}
+
+{{ $scope := printf "zf-scope-map-section-%d" $i }}
+
+{{ partial "design_system/block_scope_vars.html" (dict
+  "block_name" "map_section"
+  "block_variant" (or $b.block_variant "map_section_default")
+  "applies_to" "all"
+  "scope_class" $scope
+) }}
+
+{{/* texts */}}
+{{ $title := "" }}
+{{ with $page.Params.map_title }}{{ $title = . }}{{ end }}
+{{ if and (eq $title "") (isset $p "map_title") }}{{ $title = $p.map_title }}{{ end }}
+{{ if eq $title "" }}{{ $title = "Location\nin Dubai" }}{{ end }}
+
+{{ $text := "" }}
+{{ with $page.Params.map_text }}{{ $text = . }}{{ end }}
+{{ if and (eq $text "") (isset $p "map_text") }}{{ $text = $p.map_text }}{{ end }}
+{{ if eq $text "" }}{{ $text = "Palm Jumeirah’s West Crescent looks out toward the Persian Gulf and back onto Dubai’s glowing skyline.\n\nFrom Atlantis The Royal to Nakheel Mall, everything is within reach here." }}{{ end }}
+
+{{/* map source: prefer embed_url, fallback to lat/lng */}}
+{{ $embed := "" }}
+{{ with $page.Params.map_embed_url }}{{ $embed = . }}{{ end }}
+{{ if and (eq $embed "") (isset $p "map_embed_url") }}{{ $embed = $p.map_embed_url }}{{ end }}
+
+{{ $lat := "" }}
+{{ $lng := "" }}
+{{ with $page.Params.map_lat }}{{ $lat = printf "%v" . }}{{ end }}
+{{ with $page.Params.map_lng }}{{ $lng = printf "%v" . }}{{ end }}
+{{ if and (eq $lat "") (isset $p "map_lat") }}{{ $lat = printf "%v" $p.map_lat }}{{ end }}
+{{ if and (eq $lng "") (isset $p "map_lng") }}{{ $lng = printf "%v" $p.map_lng }}{{ end }}
+
+{{ if and (eq $embed "") (ne $lat "") (ne $lng "") }}
+  {{/* simple Google Maps embed by coords */}}
+  {{ $embed = printf "https://www.google.com/maps?q=%s,%s&z=14&output=embed" $lat $lng }}
+{{ end }}
+
+<section class="zf-map-section {{ $scope }}" id="map">
+  <div class="zf-map-section__inner">
+
+    <div class="zf-map-section__panel">
+      {{/* render \n as <br> safely */}}
+      <h2 class="zf-map-section__title">{{ replace $title "\n" "<br>" | safeHTML }}</h2>
+
+      {{/* split by blank lines into paragraphs */}}
+      {{ $parts := split $text "\n\n" }}
+      <div class="zf-map-section__text">
+        {{ range $parts }}
+          {{ $line := trim . " \n\r\t" }}
+          {{ if ne $line "" }}
+            <p class="zf-map-section__p">{{ $line }}</p>
+          {{ end }}
+        {{ end }}
+      </div>
+    </div>
+
+    <div class="zf-map-section__map" aria-label="Map">
+      {{ if ne $embed "" }}
+        <iframe
+          class="zf-map-section__iframe"
+          src="{{ $embed }}"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen
+          title="Map">
+        </iframe>
+      {{ else }}
+        <div class="zf-map-section__map-fallback">
+          Map is not available (no map_embed_url / map_lat / map_lng).
+        </div>
+      {{ end }}
+    </div>
+
+  </div>
+</section>

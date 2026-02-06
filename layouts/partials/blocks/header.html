@@ -1,0 +1,52 @@
+{{ $page := .page }}
+{{ $b := .block }}
+{{ $i := (or .scope_index 0) }}
+
+{{/* поддерживаем оба ключа: .project и .p */}}
+{{ $p := or .project .p }}
+
+{{ $scope := printf "zf-scope-header-%d" $i }}
+
+{{ partial "design_system/block_scope_vars.html" (dict
+  "block_name" "header"
+  "block_variant" (or $b.block_variant "header_default")
+  "applies_to" "all"
+  "scope_class" $scope
+) }}
+
+{{/* QR: prefer page params, fallback to data */}}
+{{ $qr := "" }}
+{{ with $page.Params.qr_image }}{{ $qr = . }}{{ end }}
+{{ if and (eq $qr "") $p (isset $p "qr_image") }}{{ $qr = $p.qr_image }}{{ end }}
+
+{{/* normalize ONLY legacy "/img/" and accidental "/static/" */}}
+{{ if $qr }}
+  {{ $qr = trim $qr " \n\r\t" }}
+  {{ if hasPrefix $qr "/static/" }}
+    {{ $qr = replace $qr "/static/" "/" }}
+  {{ end }}
+  {{ if hasPrefix $qr "/img/" }}
+    {{ $qr = replace $qr "/img/" "/images/projects/" }}
+  {{ end }}
+{{ end }}
+
+<header id="site-header" class="zf-header {{ $scope }}">
+  {{ if $qr }}
+    <a class="zf-header__qr" href="{{ $qr | relURL }}" target="_blank" rel="noopener" aria-label="Open QR code">
+      <img src="{{ $qr | relURL }}" alt="QR code">
+    </a>
+  {{ end }}
+
+  <div class="zf-container">
+    <div class="zf-header__inner">
+      <nav aria-label="Primary navigation">
+        <ul class="zf-nav">
+          <li><a href="#infrastructure">Infrastructure</a></li>
+          <li><a href="#apartments">Apartments</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#contacts">Contacts</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>

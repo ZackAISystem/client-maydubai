@@ -1,0 +1,95 @@
+{{ $page := .page }}
+{{ $p := .project }}
+{{ $b := .block }}
+{{ $i := (or .scope_index 0) }}
+
+{{ if not $p }}{{ $p = dict }}{{ end }}
+
+{{ $scope := printf "zf-scope-project-gallery-%d" $i }}
+
+{{ partial "design_system/block_scope_vars.html" (dict
+  "block_name" "project_gallery"
+  "block_variant" (or $b.block_variant "project_gallery_default")
+  "applies_to" "all"
+  "scope_class" $scope
+) }}
+
+{{/* collect images */}}
+{{ $imgs := slice }}
+
+{{ with $page.Params.gallery }}
+  {{ range . }}
+    {{ $v := trim . " \n\r\t" }}
+    {{ if ne $v "" }}{{ $imgs = $imgs | append $v }}{{ end }}
+  {{ end }}
+{{ end }}
+
+{{ if eq (len $imgs) 0 }}
+  {{ with (index $p "gallery") }}
+    {{ range . }}
+      {{ $v := trim . " \n\r\t" }}
+      {{ if ne $v "" }}{{ $imgs = $imgs | append $v }}{{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{ if eq (len $imgs) 0 }}
+  {{ if and (isset $p "gallery_1") $p.gallery_1 }}{{ $imgs = $imgs | append $p.gallery_1 }}{{ end }}
+  {{ if and (isset $p "gallery_2") $p.gallery_2 }}{{ $imgs = $imgs | append $p.gallery_2 }}{{ end }}
+  {{ if and (isset $p "gallery_3") $p.gallery_3 }}{{ $imgs = $imgs | append $p.gallery_3 }}{{ end }}
+  {{ if and (isset $p "gallery_4") $p.gallery_4 }}{{ $imgs = $imgs | append $p.gallery_4 }}{{ end }}
+  {{ if and (isset $p "gallery_5") $p.gallery_5 }}{{ $imgs = $imgs | append $p.gallery_5 }}{{ end }}
+{{ end }}
+
+{{ if gt (len $imgs) 0 }}
+<section class="zf-project-gallery {{ $scope }}" id="gallery" data-gallery-root="{{ $scope }}">
+  <div class="zf-project-gallery__frame" data-gallery-frame data-images='{{ jsonify $imgs }}'>
+    <img class="zf-project-gallery__img" data-gallery-img src="{{ (index $imgs 0) | relURL }}" alt="Project gallery image">
+
+    <button class="zf-project-gallery__nav zf-project-gallery__nav--prev" type="button" data-gallery-prev aria-label="Previous photo">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M15.5 5.5L9 12l6.5 6.5-1.4 1.4L6.2 12l7.9-7.9z"/>
+      </svg>
+    </button>
+
+    <button class="zf-project-gallery__nav zf-project-gallery__nav--next" type="button" data-gallery-next aria-label="Next photo">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M8.5 18.5L15 12 8.5 5.5l1.4-1.4L17.8 12l-7.9 7.9z"/>
+      </svg>
+    </button>
+  </div>
+</section>
+
+<script>
+(() => {
+  const root = document.querySelector('[data-gallery-root="{{ $scope }}"]');
+  if (!root) return;
+
+  const frame = root.querySelector('[data-gallery-frame]');
+  if (!frame) return;
+
+  let images = [];
+  try { images = JSON.parse(frame.getAttribute('data-images') || '[]'); } catch(e) { images = []; }
+  if (!images.length) return;
+
+  const imgEl = frame.querySelector('[data-gallery-img]');
+  const prevBtn = frame.querySelector('[data-gallery-prev]');
+  const nextBtn = frame.querySelector('[data-gallery-next]');
+
+  let idx = 0;
+
+  const render = () => {
+    imgEl.src = images[idx];
+    prevBtn.disabled = (idx === 0);
+    nextBtn.disabled = (idx === images.length - 1);
+    prevBtn.classList.toggle('is-disabled', prevBtn.disabled);
+    nextBtn.classList.toggle('is-disabled', nextBtn.disabled);
+  };
+
+  prevBtn.addEventListener('click', () => { if (idx > 0) { idx -= 1; render(); }});
+  nextBtn.addEventListener('click', () => { if (idx < images.length - 1) { idx += 1; render(); }});
+
+  render();
+})();
+</script>
+{{ end }}

@@ -1,0 +1,67 @@
+{{ $page := .page }}
+{{ $p := .project }}
+{{ $b := .block }}
+{{ $i := (or .scope_index 0) }}
+
+{{ if not $p }}{{ $p = dict }}{{ end }}
+
+{{ $scope := printf "zf-scope-project-info-%d" $i }}
+
+{{ partial "design_system/block_scope_vars.html" (dict
+  "block_name" "project_info"
+  "block_variant" (or $b.block_variant "project_info_default")
+  "applies_to" "all"
+  "scope_class" $scope
+) }}
+
+{{/* intro_image: index.md -> json -> default */}}
+{{ $img := "" }}
+{{ with $page.Params.intro_image }}{{ $img = . }}{{ end }}
+{{ if and (eq $img "") (isset $p "intro_image") }}{{ $img = $p.intro_image }}{{ end }}
+{{ if eq $img "" }}{{ $img = "/img/intro_image.jpg" }}{{ end }}
+
+{{/* title: index.md -> json */}}
+{{ $title := "" }}
+{{ with $page.Params.project_info_title }}{{ $title = . }}{{ end }}
+{{ if and (eq $title "") (isset $p "project_info_title") }}{{ $title = $p.project_info_title }}{{ end }}
+
+{{/* text: index.md -> json */}}
+{{ $text := "" }}
+{{ with $page.Params.project_info_text }}{{ $text = . }}{{ end }}
+{{ if and (eq $text "") (isset $p "project_info_text") }}{{ $text = $p.project_info_text }}{{ end }}
+
+{{/* CTA: index.md -> json -> default */}}
+{{ $cta := "" }}
+{{ with $page.Params.project_info_cta_text }}{{ $cta = . }}{{ end }}
+{{ if and (eq $cta "") (isset $p "project_info_cta_text") }}{{ $cta = $p.project_info_cta_text }}{{ end }}
+{{ if eq $cta "" }}{{ $cta = "Contact us" }}{{ end }}
+
+<section class="zf-project-info {{ $scope }}" id="infrastructure">
+  <div class="zf-container">
+    <div class="zf-project-info__frame">
+      <div class="zf-project-info__media" aria-hidden="true">
+        <img src="{{ $img }}" alt="">
+      </div>
+
+      <div class="zf-project-info__card">
+        {{ if $title }}
+          <h2 class="zf-project-info__title">{{ $title }}</h2>
+        {{ end }}
+
+        {{ if $text }}
+          {{ $parts := split $text "\n\n" }}
+          <div class="zf-project-info__text">
+            {{ range $parts }}
+              {{ $line := trim . " \n\r\t" }}
+              {{ if ne $line "" }}
+                <p>{{ $line }}</p>
+              {{ end }}
+            {{ end }}
+          </div>
+        {{ end }}
+
+        <a class="zf-project-info__cta" href="#contacts">{{ $cta }}</a>
+      </div>
+    </div>
+  </div>
+</section>

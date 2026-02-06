@@ -1,0 +1,21 @@
+{{- /* helpers/get_param.html
+Return param value by key from:
+1) page.Params[key]
+2) project dict key
+Usage:
+  {{ $v := partial "helpers/get_param.html" (dict "page" $page "project" $p "key" "amenities_1") }}
+*/ -}}
+
+{{- $page := .page -}}
+{{- $p := .project -}}
+{{- $k := .key -}}
+
+{{- $v := "" -}}
+{{- with (index $page.Params $k) -}}
+  {{- $v = . -}}
+{{- end -}}
+{{- if and (eq $v "") (isset $p $k) -}}
+  {{- $v = (index $p $k) -}}
+{{- end -}}
+
+{{- return $v -}}

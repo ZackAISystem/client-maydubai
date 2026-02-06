@@ -1,0 +1,115 @@
+{{/* ------------------------------------------------------------
+block_scope_vars.html
+Reads assets/design_system/block_token_map.csv and outputs:
+
+<style data-zf-scope="zf-scope-hero-1">
+  .zf-scope-hero-1{ --x: y; --a: b; }
+</style>
+
+Expected CSV columns:
+block_name, block_variant, applies_to, css_var, css_value
+------------------------------------------------------------ */}}
+
+{{ $bn := (or .block_name "") }}
+{{ $bv := (or .block_variant "") }}
+{{ $ap := (or .applies_to "all") }}
+{{ $scope := (or .scope_class "") }}
+
+{{/* Guard */}}
+{{ if or (eq $bn "") (eq $scope "") }}{{ return }}{{ end }}
+
+{{ $res := resources.Get "design_system/block_token_map.csv" }}
+{{ if not $res }}{{ return }}{{ end }}
+
+{{ $rows := $res | transform.Unmarshal (dict "delimiter" "," "lazyQuotes" true) }}
+{{ if or (not $rows) (lt (len $rows) 1) }}{{ return }}{{ end }}
+
+{{ $out := "" }}
+
+{{/* ---------- Case 1: rows are maps ---------- */}}
+{{ if eq (printf "%T" (index $rows 0)) "map[string]interface {}" }}
+
+  {{ range $rows }}
+    {{ $rbn := "" }}{{ $rbv := "" }}{{ $rap := "" }}{{ $v := "" }}{{ $val := "" }}
+
+    {{ with (index . "block_name") }}{{ $rbn = strings.TrimSpace (printf "%v" .) }}{{ end }}
+    {{ with (index . "block_variant") }}{{ $rbv = strings.TrimSpace (printf "%v" .) }}{{ end }}
+    {{ with (index . "applies_to") }}{{ $rap = strings.TrimSpace (printf "%v" .) }}{{ end }}
+    {{ with (index . "css_var") }}{{ $v = strings.TrimSpace (printf "%v" .) }}{{ end }}
+    {{ with (index . "css_value") }}{{ $val = strings.TrimSpace (printf "%v" .) }}{{ end }}
+
+    {{ $rbn = replace (replace $rbn "\ufeff" "") "\r" "" }}
+    {{ $rbv = replace (replace $rbv "\ufeff" "") "\r" "" }}
+    {{ $rap = replace (replace $rap "\ufeff" "") "\r" "" }}
+    {{ $v   = replace (replace $v   "\ufeff" "") "\r" "" }}
+    {{ $val = replace (replace $val "\ufeff" "") "\r" "" }}
+
+    {{ $okAp := false }}
+    {{ if eq $ap "all" }}
+      {{ $okAp = true }}
+    {{ else if or (eq $rap $ap) (eq $rap "all") }}
+      {{ $okAp = true }}
+    {{ end }}
+
+    {{ if and (eq $rbn $bn) (eq $rbv $bv) $okAp (ne $v "") (ne $val "") }}
+      {{ $out = printf "%s%s: %s;\n" $out $v $val }}
+    {{ end }}
+  {{ end }}
+
+{{/* ---------- Case 2: rows are arrays (header + values) ---------- */}}
+{{ else }}
+
+  {{ if lt (len $rows) 2 }}{{ return }}{{ end }}
+
+  {{ $header := index $rows 0 }}
+  {{ $idxBN := -1 }}{{ $idxBV := -1 }}{{ $idxAP := -1 }}{{ $idxVar := -1 }}{{ $idxVal := -1 }}
+
+  {{ range $i, $h := $header }}
+    {{ $hh := replace (strings.TrimSpace (printf "%v" $h)) "\ufeff" "" }}
+    {{ if eq $hh "block_name" }}{{ $idxBN = $i }}{{ end }}
+    {{ if eq $hh "block_variant" }}{{ $idxBV = $i }}{{ end }}
+    {{ if eq $hh "applies_to" }}{{ $idxAP = $i }}{{ end }}
+    {{ if eq $hh "css_var" }}{{ $idxVar = $i }}{{ end }}
+    {{ if eq $hh "css_value" }}{{ $idxVal = $i }}{{ end }}
+  {{ end }}
+
+  {{ if or (lt $idxBN 0) (lt $idxBV 0) (lt $idxVar 0) (lt $idxVal 0) }}{{ return }}{{ end }}
+
+  {{ range (after 1 $rows) }}
+    {{ $row := . }}
+    {{ if and (ge (len $row) (add $idxVal 1)) (ge (len $row) (add $idxVar 1)) (ge (len $row) (add $idxBV 1)) (ge (len $row) (add $idxBN 1)) }}
+
+      {{ $rbn := replace (strings.TrimSpace (printf "%v" (index $row $idxBN))) "\ufeff" "" }}
+      {{ $rbv := replace (strings.TrimSpace (printf "%v" (index $row $idxBV))) "\ufeff" "" }}
+
+      {{ $rap := "" }}
+      {{ if ge $idxAP 0 }}{{ $rap = replace (strings.TrimSpace (printf "%v" (index $row $idxAP))) "\ufeff" "" }}{{ end }}
+
+      {{ $v := replace (strings.TrimSpace (printf "%v" (index $row $idxVar))) "\ufeff" "" }}
+      {{ $val := replace (strings.TrimSpace (printf "%v" (index $row $idxVal))) "\ufeff" "" }}
+
+      {{ $rbn = replace $rbn "\r" "" }}
+      {{ $rbv = replace $rbv "\r" "" }}
+      {{ $rap = replace $rap "\r" "" }}
+      {{ $v   = replace $v   "\r" "" }}
+      {{ $val = replace $val "\r" "" }}
+
+      {{ $okAp := false }}
+      {{ if eq $ap "all" }}
+        {{ $okAp = true }}
+      {{ else if or (eq $rap $ap) (eq $rap "all") }}
+        {{ $okAp = true }}
+      {{ end }}
+
+      {{ if and (eq $rbn $bn) (eq $rbv $bv) $okAp (ne $v "") (ne $val "") }}
+        {{ $out = printf "%s%s: %s;\n" $out $v $val }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+
+{{ end }}
+
+{{ if ne (strings.TrimSpace $out) "" }}
+  {{ $css := printf ".%s{\n%s}\n" $scope $out | safeCSS }}
+  <style data-zf-scope="{{ $scope }}">{{ $css }}</style>
+{{ end }}

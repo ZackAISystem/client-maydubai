@@ -1,0 +1,80 @@
+{{ $page := .page }}
+{{ $p := .project }}
+{{ $b := .block }}
+{{ $i := (or .scope_index 0) }}
+
+{{ if not $p }}{{ $p = dict }}{{ end }}
+
+{{ $scope := printf "zf-scope-amenities-%d" $i }}
+
+{{ partial "design_system/block_scope_vars.html" (dict
+  "block_name" "amenities"
+  "block_variant" (or $b.block_variant "amenities_default")
+  "applies_to" "all"
+  "scope_class" $scope
+) }}
+
+{{/* title: index.md -> json -> default */}}
+{{ $title := "" }}
+{{ with $page.Params.amenities_title }}{{ $title = . }}{{ end }}
+{{ if and (eq $title "") (isset $p "amenities_title") }}{{ $title = $p.amenities_title }}{{ end }}
+{{ if eq $title "" }}{{ $title = "Amenities" }}{{ end }}
+
+{{/* Build items list:
+    A) index.md provides amenities_items: [{title, image_key}] (preferred)
+    B) fallback to flat keys amenities_1..amenities_5 (+ labels)
+*/}}
+{{ $items := slice }}
+
+{{ with $page.Params.amenities_items }}
+  {{ range . }}
+    {{ $t := "" }}
+    {{ with .title }}{{ $t = . }}{{ end }}
+
+    {{ $img := "" }}
+    {{ with .image_key }}
+      {{ $img = partial "helpers/get_param.html" (dict "page" $page "project" $p "key" .) }}
+    {{ end }}
+
+    {{ if eq $img "" }}
+      {{ with .image }}{{ $img = . }}{{ end }}
+    {{ end }}
+
+    {{ if ne (strings.TrimSpace $img) "" }}
+      {{ $items = $items | append (dict "img" $img "label" $t) }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{ if eq (len $items) 0 }}
+  {{ range $n := (seq 1 5) }}
+    {{ $kImg := printf "amenities_%d" $n }}
+    {{ $kLbl := printf "amenities_%d_label" $n }}
+
+    {{ $img := partial "helpers/get_param.html" (dict "page" $page "project" $p "key" $kImg) }}
+    {{ $lbl := partial "helpers/get_param.html" (dict "page" $page "project" $p "key" $kLbl) }}
+
+    {{ if ne (strings.TrimSpace $img) "" }}
+      {{ $items = $items | append (dict "img" $img "label" $lbl) }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+<section class="zf-amenities {{ $scope }}" id="amenities">
+  <div class="zf-container">
+
+    <h2 class="zf-amenities__title">{{ $title }}</h2>
+
+    <div class="zf-amenities__grid">
+      {{ range $items }}
+        <figure class="zf-amenity">
+          <img class="zf-amenity__img" src="{{ .img }}" alt="">
+          {{ if ne (strings.TrimSpace (or .label "")) "" }}
+            <figcaption class="zf-amenity__label">{{ .label }}</figcaption>
+          {{ end }}
+        </figure>
+      {{ end }}
+    </div>
+
+  </div>
+</section>

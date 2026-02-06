@@ -1,0 +1,82 @@
+{{ $page := .page }}
+{{ $p := .project }}
+{{ $b := .block }}
+{{ $i := (or .scope_index 0) }}
+
+{{ if not $p }}{{ $p = dict }}{{ end }}
+
+{{ $scope := printf "zf-scope-hero-%d" $i }}
+
+{{ partial "design_system/block_scope_vars.html" (dict
+  "block_name" "hero"
+  "block_variant" (or $b.block_variant "hero_default")
+  "applies_to" "all"
+  "scope_class" $scope
+) }}
+
+{{/* hero_image: index.md -> json -> default */}}
+{{ $img := "" }}
+{{ with $page.Params.hero_image }}{{ $img = . }}{{ end }}
+{{ if and (eq $img "") (isset $p "hero_image") }}{{ $img = $p.hero_image }}{{ end }}
+{{ if eq $img "" }}{{ $img = "/img/hero_image.jpg" }}{{ end }}
+
+{{/* title: json project_name -> index.md title -> page.Title */}}
+{{ $title := "" }}
+{{ if and (isset $p "project_name") $p.project_name }}{{ $title = $p.project_name }}{{ end }}
+{{ if and (eq $title "") (ne $page.Title "") }}{{ $title = $page.Title }}{{ end }}
+{{ if eq $title "" }}{{ $title = "Project" }}{{ end }}
+
+{{/* CTA: index.md -> json -> default */}}
+{{ $cta := "" }}
+{{ with $page.Params.hero_cta_text }}{{ $cta = . }}{{ end }}
+{{ if and (eq $cta "") (isset $p "hero_cta_text") }}{{ $cta = $p.hero_cta_text }}{{ end }}
+{{ if eq $cta "" }}{{ $cta = "Arrange a viewing" }}{{ end }}
+
+{{/* facts: index.md -> json */}}
+{{ $fact1Label := "" }}{{ $fact1Value := "" }}
+{{ $fact2Label := "" }}{{ $fact2Value := "" }}
+
+{{ with $page.Params.hero_fact_1_label }}{{ $fact1Label = . }}{{ end }}
+{{ with $page.Params.hero_fact_1_value }}{{ $fact1Value = . }}{{ end }}
+{{ with $page.Params.hero_fact_2_label }}{{ $fact2Label = . }}{{ end }}
+{{ with $page.Params.hero_fact_2_value }}{{ $fact2Value = . }}{{ end }}
+
+{{ if and (eq $fact1Label "") (isset $p "hero_fact_1_label") }}{{ $fact1Label = $p.hero_fact_1_label }}{{ end }}
+{{ if and (eq $fact1Value "") (isset $p "hero_fact_1_value") }}{{ $fact1Value = $p.hero_fact_1_value }}{{ end }}
+{{ if and (eq $fact2Label "") (isset $p "hero_fact_2_label") }}{{ $fact2Label = $p.hero_fact_2_label }}{{ end }}
+{{ if and (eq $fact2Value "") (isset $p "hero_fact_2_value") }}{{ $fact2Value = $p.hero_fact_2_value }}{{ end }}
+
+<section class="zf-hero {{ $scope }}" id="top">
+
+  <div class="zf-hero__media" aria-hidden="true">
+    <img src="{{ $img }}" alt="">
+  </div>
+
+  <div class="zf-container">
+    <div class="zf-hero__content">
+      <h1 class="zf-hero__title">{{ $title }}</h1>
+    </div>
+  </div>
+
+  <a class="zf-hero__cta zf-hero__cta--floating" href="#contacts">
+    {{ $cta }}
+  </a>
+
+  {{ if or (and (ne $fact1Label "") (ne $fact1Value "")) (and (ne $fact2Label "") (ne $fact2Value "")) }}
+    <div class="zf-hero__info" aria-label="Key facts">
+      {{ if and (ne $fact1Label "") (ne $fact1Value "") }}
+        <div class="zf-pill">
+          <div class="zf-pill__label">{{ $fact1Label }}</div>
+          <div class="zf-pill__value">{{ $fact1Value }}</div>
+        </div>
+      {{ end }}
+      {{ if and (ne $fact2Label "") (ne $fact2Value "") }}
+        <div class="zf-pill">
+          <div class="zf-pill__label">{{ $fact2Label }}</div>
+          <div class="zf-pill__value">{{ $fact2Value }}</div>
+        </div>
+      {{ end }}
+    </div>
+  {{ end }}
+
+</section>

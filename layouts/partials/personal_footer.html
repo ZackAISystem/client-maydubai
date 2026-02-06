@@ -1,0 +1,85 @@
+{{ $c := site.Data.client }}
+
+<footer class="site-footer" id="contacts">
+
+  <div class="footer-wrap">
+
+    <!-- LEFT -->
+    <div class="footer-left">
+      <div class="footer-brand">
+        <img src="/images/coccinelle-logo.png" alt="Invest with Coccinelle">
+        <span>INVEST WITH<br>COCCINELLE</span>
+      </div>
+
+      <div class="footer-legal">
+        <p>© {{ $c.name }} — All rights reserved</p>
+        <p>
+          Operates under ABRA Exclusive
+          (RERA-licensed 1473683 Master Agency)
+        </p>
+      </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="footer-right">
+
+      <!-- CONTACT PILLS -->
+      <div class="footer-contacts">
+        {{ with $c.phone_link }}
+        <a href="tel:{{ . }}" class="footer-pill">
+          {{ $c.phone_display }}
+        </a>
+        {{ end }}
+
+        {{ with $c.email }}
+        <a href="mailto:{{ . }}" class="footer-pill">
+          {{ . }}
+        </a>
+        {{ end }}
+      </div>
+
+      <!-- SOCIAL ICONS -->
+      <div class="footer-socials">
+
+        {{ with $c.social.instagram }}
+        <a href="{{ . }}" target="_blank" rel="noopener" aria-label="Instagram">
+          <img src="/images/icons/instagram.svg" alt="Instagram">
+        </a>
+        {{ end }}
+
+        {{ with $c.social.linkedin }}
+        <a href="{{ . }}" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <img src="/images/icons/linkedin.svg" alt="LinkedIn">
+        </a>
+        {{ end }}
+
+        {{ with $c.social.facebook }}
+        <a href="{{ . }}" target="_blank" rel="noopener" aria-label="Facebook">
+          <img src="/images/icons/facebook.svg" alt="Facebook">
+        </a>
+        {{ end }}
+
+        {{ with $c.social.telegram }}
+        <a href="{{ . }}" target="_blank" rel="noopener" aria-label="Telegram">
+          <img src="/images/icons/telegram.svg" alt="Telegram">
+        </a>
+        {{ end }}
+
+        {{ with $c.whatsapp_link }}
+        <a href="{{ . }}" target="_blank" rel="noopener" aria-label="WhatsApp">
+          <img src="/images/icons/whatsapp.svg" alt="WhatsApp">
+        </a>
+        {{ end }}
+
+      </div>
+
+      <!-- NOTE -->
+      <div class="footer-note">
+        All projects listed are officially represented through ABRA Exclusive
+      </div>
+
+    </div>
+
+  </div>
+
+</footer>

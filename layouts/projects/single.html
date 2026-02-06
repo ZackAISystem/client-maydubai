@@ -1,0 +1,62 @@
+{{/* layouts/projects/single.html */}}
+{{ define "main" }}
+<main>
+  {{ $page := . }}
+
+  {{/* 1) Надёжно вычисляем ключ проекта */}}
+  {{ $key := "" }}
+
+  {{ with $page.Params.project_key }}
+    {{ $key = . }}
+  {{ else }}
+    {{/* если это page bundle: content/projects/<slug>/index.md */}}
+    {{ if $page.File }}
+      {{ $dir := strings.TrimSuffix "/" $page.File.Dir }}
+      {{ if $dir }}
+        {{ $key = path.Base $dir }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+
+  {{ if eq $key "" }}
+    {{ $key = $page.File.BaseFileName }}
+  {{ end }}
+
+  {{/* 2) Берём данные из /data/projects/<key>.json */}}
+  {{ $project := index site.Data.projects $key }}
+  {{ if not $project }}{{ $project = dict }}{{ end }}
+
+  {{/* 3) Блоки: из front matter или дефолтный порядок */}}
+  {{ $blocks := $page.Params.blocks }}
+  {{ if not $blocks }}
+    {{ $blocks = slice
+      (dict "type" "header"          "block_variant" "header_default")
+      (dict "type" "hero"            "block_variant" "hero_default")
+      (dict "type" "project_info"    "block_variant" "project_info_default")
+      (dict "type" "amenities"       "block_variant" "amenities_default")
+      (dict "type" "project_gallery" "block_variant" "project_gallery_default")
+      (dict "type" "project_summary" "block_variant" "project_summary_default")
+      (dict "type" "units_gallery"   "block_variant" "units_gallery_default")
+      (dict "type" "map_section"     "block_variant" "map_section_default")
+      (dict "type" "contact_form"    "block_variant" "contact_form_default")
+      (dict "type" "footer"          "block_variant" "footer_default")
+    }}
+  {{ end }}
+
+  {{/* 4) Рендерим блоки */}}
+  {{ range $index, $block := $blocks }}
+    {{ $t := (or $block.type $block.block_name) }}
+    {{ if $t }}
+      {{ partial (printf "blocks/%s.html" $t) (dict
+        "page" $page
+        "project" $project
+        "p" $project
+        "block" $block
+        "scope_index" $index
+        "project_key" $key
+      ) }}
+    {{ end }}
+  {{ end }}
+
+</main>
+{{ end }}

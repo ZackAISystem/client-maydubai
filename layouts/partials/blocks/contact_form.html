@@ -1,0 +1,85 @@
+{{ $page := .page }}
+{{ $p := .project }}
+{{ $b := .block }}
+{{ $i := (or .scope_index 0) }}
+
+{{ if not $p }}{{ $p = dict }}{{ end }}
+
+{{ $scope := printf "zf-scope-contact-form-%d" $i }}
+
+{{ partial "design_system/block_scope_vars.html" (dict
+  "block_name" "contact_form"
+  "block_variant" (or $b.block_variant "contact_form_default")
+  "applies_to" "all"
+  "scope_class" $scope
+) }}
+
+{{/* background image */}}
+{{ $bg := "" }}
+{{ with $page.Params.final_image }}{{ $bg = . }}{{ end }}
+{{ if and (eq $bg "") (isset $p "final_image") }}{{ $bg = $p.final_image }}{{ end }}
+{{ if and (eq $bg "") (isset $p "image_final") }}{{ $bg = $p.image_final }}{{ end }}
+
+{{/* texts */}}
+{{ $title := "" }}
+{{ with $page.Params.contact_title }}{{ $title = . }}{{ end }}
+{{ if and (eq $title "") (isset $p "contact_title") }}{{ $title = $p.contact_title }}{{ end }}
+{{ if eq $title "" }}{{ $title = "Any other\nquestions?" }}{{ end }}
+
+{{ $placeholder := "" }}
+{{ with $page.Params.contact_phone_placeholder }}{{ $placeholder = . }}{{ end }}
+{{ if and (eq $placeholder "") (isset $p "contact_phone_placeholder") }}{{ $placeholder = $p.contact_phone_placeholder }}{{ end }}
+{{ if eq $placeholder "" }}{{ $placeholder = "Phone number" }}{{ end }}
+
+{{ $ctaText := "" }}
+{{ with $page.Params.contact_cta_text }}{{ $ctaText = . }}{{ end }}
+{{ if and (eq $ctaText "") (isset $p "contact_cta_text") }}{{ $ctaText = $p.contact_cta_text }}{{ end }}
+{{ if eq $ctaText "" }}{{ $ctaText = "Arrange a viewing" }}{{ end }}
+
+{{/* CTA target (no form submit): prefer client WhatsApp -> tel -> mail */}}
+{{ $c := site.Data.client }}
+
+{{ $ctaHref := "" }}
+{{ if and $c (isset $c "whatsapp_link") (ne (trim $c.whatsapp_link " \n\r\t") "") }}
+  {{ $ctaHref = $c.whatsapp_link }}
+{{ else if and $c (isset $c "phone_link") (ne (trim $c.phone_link " \n\r\t") "") }}
+  {{ $ctaHref = printf "tel:%s" (replace (trim $c.phone_link " \n\r\t") " " "") }}
+{{ else if and $c (isset $c "email") (ne (trim $c.email " \n\r\t") "") }}
+  {{ $ctaHref = printf "mailto:%s" (trim $c.email " \n\r\t") }}
+{{ else }}
+  {{ $ctaHref = "#contacts" }}
+{{ end }}
+
+{{/* optional: prefill whatsapp message with project name */}}
+{{ $projectName := "" }}
+{{ if and (isset $p "project_name") $p.project_name }}{{ $projectName = $p.project_name }}{{ end }}
+{{ if and (eq $projectName "") (ne $page.Title "") }}{{ $projectName = $page.Title }}{{ end }}
+
+{{ $ctaHrefFinal := $ctaHref }}
+{{ if and (ne $ctaHref "") (in $ctaHref "wa.me") (ne (trim $projectName " \n\r\t") "") }}
+  {{ $msg := printf "Hi! I’m interested in %s. Please contact me." $projectName | urlquery }}
+  {{ if in $ctaHref "?" }}
+    {{ $ctaHrefFinal = printf "%s&text=%s" $ctaHref $msg }}
+  {{ else }}
+    {{ $ctaHrefFinal = printf "%s?text=%s" $ctaHref $msg }}
+  {{ end }}
+{{ end }}
+
+{{/* Anchor compatibility: keep id="contact" but also support #contacts */}}
+<span id="contacts" aria-hidden="true"></span>
+
+<section class="zf-contact-form {{ $scope }}" id="contact">
+  <div class="zf-contact-form__bg" {{ if ne $bg "" }}style="background-image:url('{{ $bg }}')"{{ end }} aria-hidden="true"></div>
+
+  <div class="zf-contact-form__card" role="form" aria-label="Contact form">
+    <h2 class="zf-contact-form__title">{{ replace $title "\n" "<br>" | safeHTML }}</h2>
+
+    <div class="zf-contact-form__actions">
+      <input class="zf-contact-form__input" type="tel" inputmode="tel" placeholder="{{ $placeholder }}" aria-label="Phone number">
+
+      <a class="zf-contact-form__cta" href="{{ $ctaHrefFinal }}" target="_blank" rel="noopener">
+        {{ $ctaText }}
+      </a>
+    </div>
+  </div>
+</section>
