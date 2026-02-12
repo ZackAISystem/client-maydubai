@@ -1,0 +1,71 @@
+{
+  "project_name": "Double Tree by Hilton",
+
+  "hero_image": "/images/projects/double-tree-by-hilton/hero.png",
+  "intro_image": "/images/projects/double-tree-by-hilton/intro.png",
+  "promo_image": "/images/projects/double-tree-by-hilton/promo.png",
+
+  "hero_cta_text": "Arrange a viewing",
+  "hero_fact_1_label": "Delivery Date",
+  "hero_fact_1_value": "June 2027",
+  "hero_fact_2_label": "Price from",
+  "hero_fact_2_value": "AED 1,600,000",
+
+  "project_info_title": "Exclusive Residence in Al Satwa Dubai",
+  "project_info_text": "Crafted for refined living, these bespoke apartments in Al Satwa by Hilton present an unmatched fusion of modern design and luxurious comfort.\n\nExperience breathtaking sea views and thoughtfully curated spaces, perfect for urban dwellers yearning for a serene oasis amidst the vibrant cityscape.",
+  "project_info_cta_text": "Contact us",
+
+  "amenities_title": "Infrastructure and landscaping of the residential complex",
+  "amenities_1": "/images/projects/double-tree-by-hilton/amenities_1.png",
+  "amenities_1_label": "Infinity Pool",
+  "amenities_2": "/images/projects/double-tree-by-hilton/amenities_2.png",
+  "amenities_2_label": "Restaurant",
+  "amenities_3": "/images/projects/double-tree-by-hilton/amenities_3.png",
+  "amenities_3_label": "Gym",
+
+  "gallery_1": "/images/projects/double-tree-by-hilton/gallery_1.png",
+  "gallery_2": "/images/projects/double-tree-by-hilton/gallery_2.png",
+  "gallery_3": "/images/projects/double-tree-by-hilton/gallery_3.png",
+
+  "project_summary_title": "Urban Oasis Amid Jumeirah's Charm",
+  "project_summary_subtitle": "Refined Living in Artful Residences",
+
+  "summary_delivery_value": "June 2027",
+  "summary_delivery_label": "Delivery Date",
+  "summary_developer_value": "Hilton",
+  "summary_developer_label": "Master Developer",
+  "summary_type_value": "Apartment",
+  "summary_type_label": "Property Type",
+  "summary_price_currency": "AED",
+  "summary_price_value": "1,600,000",
+  "summary_price_label": "Starting Price",
+
+  "units_gallery_1": "/images/projects/double-tree-by-hilton/units_gallery_1.png",
+  "units_gallery_2": "/images/projects/double-tree-by-hilton/units_gallery_2.png",
+  "units_gallery_3": "/images/projects/double-tree-by-hilton/units_gallery_3.png",
+
+  "units_gallery_title": "Available Units",
+  "units_bed_main": "1 Bedroom",
+  "units_bed_options": "2",
+  "units_price_from": "AED 1,600,000",
+  "units_area_from": "From 606 SQFT",
+  "units_cta_text": "Book a consultation",
+
+  "map_title": "Location\nin Dubai",
+  "map_text": "Between the sea and the city, Al Satwa in Jumeirah Garden City offers a vibrant tapestry of life, nestled amidst world-class attractions like City Walk and Sheikh Zayed Road.\n\nHere, urban energy meets coastal serenity, crafting a distinctive atmosphere infused with culture and elegance.",
+  "map_address": "Nakhlat Jumeira - Dubai",
+  "map_lat": 25.2123,
+  "map_lng": 55.2546,
+
+  "final_image": "/images/projects/double-tree-by-hilton/final.png",
+
+  "contact_form_title": "Any other\nquestions?",
+  "contact_form_phone_label": "Phone number",
+  "contact_form_cta_text": "Arrange a viewing",
+
+  "footer_project_name": "Double Tree by Hilton",
+  "footer_phone": "+971 58 858 9528",
+  "footer_cta_text": "Contact us",
+  "footer_powered_text": "Powered by Zack AI",
+  "footer_tagline": "Luxury apartments in the heart of Dubai"
+}

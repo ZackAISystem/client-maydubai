@@ -1,0 +1,74 @@
+{
+  "project_name": "Arthouse Residences",
+
+  "hero_image": "/images/projects/arthouse-residences/hero.png",
+  "intro_image": "/images/projects/arthouse-residences/intro.png",
+  "promo_image": "/images/projects/arthouse-residences/promo.png",
+
+  "qr_image": "/images/qr/arthouse-residences.png",
+
+  "hero_cta_text": "Learn More",
+  "hero_fact_1_label": "Delivery Date",
+  "hero_fact_1_value": "December 2027",
+  "hero_fact_2_label": "Price from",
+  "hero_fact_2_value": "AED 1,300,000",
+
+  "project_info_title": "Luxury Beachfront Living in Al Marjan",
+  "project_info_text": "Designed for those who appreciate tranquil sophistication, Arthouse Residences on Al Marjan Island offers a seamless blend of modern elegance and seaside serenity.\n\nExperience open coastal views and refined architecture, creating an idyllic sanctuary steeped in luxury for discerning residents seeking a balanced lifestyle.",
+  "project_info_cta_text": "Request Details",
+
+  "amenities_title": "Infrastructure and landscaping of the residential complex",
+  "amenities_1": "/images/projects/arthouse-residences/amenities_1.png",
+  "amenities_1_label": "Infinity Pool",
+  "amenities_2": "/images/projects/arthouse-residences/amenities_2.png",
+  "amenities_2_label": "Wellness & Spa",
+  "amenities_3": "/images/projects/arthouse-residences/amenities_3.png",
+  "amenities_3_label": "Gymnasium",
+
+  "gallery_1": "/images/projects/arthouse-residences/gallery_1.png",
+  "gallery_2": "/images/projects/arthouse-residences/gallery_2.png",
+  "gallery_3": "/images/projects/arthouse-residences/gallery_3.png",
+
+  "project_summary_title": "Island Escape on Al Marjan",
+  "project_summary_subtitle": "Elevated Living in Artful Design",
+
+  "summary_delivery_value": "December 2027",
+  "summary_delivery_label": "Delivery Date",
+  "summary_developer_value": "Cledor",
+  "summary_developer_label": "Master Developer",
+  "summary_type_value": "Apartment, Penthouse",
+  "summary_type_label": "Property Type",
+  "summary_price_currency": "AED",
+  "summary_price_value": "1,300,000",
+  "summary_price_label": "Starting Price",
+
+  "units_gallery_1": "/images/projects/arthouse-residences/units_gallery_1.png",
+  "units_gallery_2": "/images/projects/arthouse-residences/units_gallery_2.png",
+  "units_gallery_3": "/images/projects/arthouse-residences/units_gallery_3.png",
+
+  "units_gallery_title": "Available Units",
+  "units_bed_main": "1 Bedroom",
+  "units_bed_options": "2",
+  "units_price_from": "AED 1,300,000",
+  "units_area_from": "From 606 SQFT",
+  "units_cta_text": "Book a consultation",
+
+  "map_title": "Location\nin Ras Al Khaimah",
+  "map_text": "Set amid the shimmering waters of Ras Al Khaimah, Arthouse Residences on Al Marjan Island offers a sanctuary where sophisticated design meets serene beachside elegance.\n\nWith its proximity to cultural landmarks and recreational havens, this location captures the essence of coastal refinement and offers an escape into a world defined by tranquility and style.",
+  "map_address": "Al Marjan Island, Ras Al Khaimah, UAE",
+  "map_lat": 25.6849,
+  "map_lng": 55.7497,
+
+  "final_image": "/images/projects/arthouse-residences/final.png",
+
+  "contact_form_title": "Looking for more?",
+  "contact_form_phone_label": "Phone number",
+  "contact_form_cta_text": "Enquire Now",
+
+  "footer_project_name": "Arthouse Residences",
+  "footer_phone": "+971 52 825 4399",
+  "footer_cta_text": "Contact us",
+  "footer_powered_text": "Powered by Zack AI",
+  "footer_tagline": "Luxury apartments in the heart of Ras Al Khaimah"
+}
+

@@ -1,0 +1,41 @@
+{{ $site := site.Data.site }}
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+
+    <!-- Logo -->
+    <a class="site-footer__logo" href="{{ "/" | relLangURL }}" aria-label="{{ $site.brand.name }}">
+      <img src="{{ $site.brand.logo_footer }}" alt="{{ $site.brand.name }}">
+    </a>
+
+    <!-- Contacts -->
+    <div class="site-footer__contacts">
+      <a class="footer-pill" href="{{ $site.contacts.phone.href }}">
+        {{ $site.contacts.phone.label }}
+      </a>
+      <a class="footer-pill" href="{{ $site.contacts.email.href }}">
+        {{ $site.contacts.email.label }}
+      </a>
+    </div>
+
+    <!-- Socials -->
+    <div class="site-footer__social" aria-label="Social links">
+      {{ range $site.socials }}
+        <a class="footer-social" href="{{ .url }}" aria-label="{{ .name }}">
+          <img src="{{ .icon }}" alt="">
+        </a>
+      {{ end }}
+    </div>
+
+    <!-- Bottom -->
+    <div class="site-footer__bottom">
+      <div class="site-footer__copyright">
+        {{ $site.footer.copyright }}
+      </div>
+      <div class="site-footer__address">
+        {{ $site.address.text }}
+      </div>
+    </div>
+
+  </div>
+</footer>

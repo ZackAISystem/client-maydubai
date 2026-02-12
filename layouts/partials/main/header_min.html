@@ -1,0 +1,7 @@
+{{ $site := site.Data.site }}
+
+<header class="site-header-min">
+  <a class="site-header-min__logo" href="{{ "/" | relLangURL }}" aria-label="{{ $site.brand.name }}">
+    <img src="{{ $site.brand.logo_header }}" alt="{{ $site.brand.name }}">
+  </a>
+</header>

@@ -1,0 +1,98 @@
+<section id="results" class="results" aria-hidden="true">
+
+  <!-- sticky search -->
+  <div class="results__sticky">
+    <div class="results__sticky-inner">
+      <div class="results__bar">
+
+        <!-- ВАЖНО: текст больше не "прибит". Его заполняет JS при submit -->
+        <div
+          id="resultsQuery"
+          class="results__query"
+          data-default=""
+        ></div>
+
+        <button id="resultsClear" class="results__clear" type="button" aria-label="Clear search">
+          <img src="/images/x.png" alt="Clear">
+        </button>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- grid -->
+  <div class="results__grid">
+
+    {{ range $key, $p := site.Data.projects }}
+      {{ $href := printf "/projects/%s/" $key }}
+
+      <a href="{{ $href }}" class="results-card">
+        <div class="results-card__inner">
+
+          <img
+            class="results-card__img"
+            src="{{ or $p.promo_image $p.intro_image $p.hero_image }}"
+            alt="{{ or $p.project_name $key }}"
+          >
+
+          <div class="results-card__meta">
+            <div class="results-card__title">{{ or $p.project_name $key }}</div>
+
+            {{ with $p.map_address }}
+              <div class="results-card__row">Location: {{ . }}</div>
+            {{ end }}
+
+            {{ with $p.hero_fact_2_value }}
+              <div class="results-card__row">Price from: {{ . }}</div>
+            {{ end }}
+          </div>
+
+        </div>
+      </a>
+    {{ end }}
+
+    <!-- placeholders (optional) -->
+    <div class="results-card results-card--placeholder">
+      <div class="results-card__inner"></div>
+    </div>
+    <div class="results-card results-card--placeholder">
+      <div class="results-card__inner"></div>
+    </div>
+
+  </div>
+
+  <div class="results__bottom-space"></div>
+
+  <!-- ✅ Мини-скрипт ТОЛЬКО для крестика: закрыть results и очистить -->
+  <script>
+  (function () {
+    const results = document.getElementById('results');
+    if (!results) return;
+
+    const btn   = document.getElementById('resultsClear');
+    const query = document.getElementById('resultsQuery');
+
+    if (!btn) return;
+
+    btn.addEventListener('click', () => {
+      // 1) скрываем results
+      results.classList.remove('is-open');
+      results.setAttribute('aria-hidden', 'true');
+
+      // 2) очищаем строку запроса
+      if (query) query.textContent = (query.dataset.default || '');
+
+      // 3) очищаем инпут в hero и фокусируем
+      const heroInput = document.querySelector('.home-hero__input');
+      if (heroInput) {
+        heroInput.value = '';
+        heroInput.focus();
+      }
+
+      // 4) возвращаем наверх (мягко)
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  })();
+  </script>
+
+</section>

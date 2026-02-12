@@ -1,1 +1,74 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Svetlana Gorbova on My New Hugo Site</title><link>https://example.org/</link><description>Recent content in Svetlana Gorbova on My New Hugo Site</description><generator>Hugo</generator><language>en-us</language><atom:link href="https://example.org/index.xml" rel="self" type="application/rss+xml"/><item><title>Allegro Park</title><link>https://example.org/projects/allegro-park/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://example.org/projects/allegro-park/</guid><description/></item><item><title>Allegro Residences</title><link>https://example.org/projects/allegro-residences/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://example.org/projects/allegro-residences/</guid><description/></item><item><title>Chelsea Gardens</title><link>https://example.org/projects/chelsea-gardens/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://example.org/projects/chelsea-gardens/</guid><description/></item><item><title>Gateway Residences</title><link>https://example.org/projects/gateway-residences/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://example.org/projects/gateway-residences/</guid><description/></item><item><title>The Willows Residences</title><link>https://example.org/projects/the-willows-residences/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://example.org/projects/the-willows-residences/</guid><description/></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Home on My New Hugo Site</title>
+    <link>http://localhost:1318/</link>
+    <description>Recent content in Home on My New Hugo Site</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="http://localhost:1318/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Arthouse Residences</title>
+      <link>http://localhost:1318/projects/arthouse-residences/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1318/projects/arthouse-residences/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Double Tree by Hilton</title>
+      <link>http://localhost:1318/projects/double-tree-by-hilton/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1318/projects/double-tree-by-hilton/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Habtoor Grand Residences</title>
+      <link>http://localhost:1318/projects/habtoor-grand-residences/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1318/projects/habtoor-grand-residences/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>JW Marriott Residences Al Marjan</title>
+      <link>http://localhost:1318/projects/jw-marriott-residences-al-marjan/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1318/projects/jw-marriott-residences-al-marjan/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>One Residence</title>
+      <link>http://localhost:1318/projects/one-residence/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1318/projects/one-residence/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Serenia Living</title>
+      <link>http://localhost:1318/projects/serenia-living/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1318/projects/serenia-living/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Six Senses Residences Dubai Marina</title>
+      <link>http://localhost:1318/projects/six-senses-residences-dubai-marina/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1318/projects/six-senses-residences-dubai-marina/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Velor</title>
+      <link>http://localhost:1318/projects/velor/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1318/projects/velor/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>W Residence Al Marjan</title>
+      <link>http://localhost:1318/projects/w-residence-al-marjan/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1318/projects/w-residence-al-marjan/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

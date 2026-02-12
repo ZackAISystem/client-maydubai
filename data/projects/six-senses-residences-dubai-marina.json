@@ -1,0 +1,71 @@
+{
+  "project_name": "Six Senses Residences Dubai Marina",
+
+  "hero_image": "/images/projects/six-senses-residences-dubai-marina/hero.png",
+  "intro_image": "/images/projects/six-senses-residences-dubai-marina/intro.png",
+  "promo_image": "/images/projects/six-senses-residences-dubai-marina/promo.png",
+
+  "hero_cta_text": "Learn More",
+  "hero_fact_1_label": "Delivery Date",
+  "hero_fact_1_value": "July 2028",
+  "hero_fact_2_label": "Price from",
+  "hero_fact_2_value": "AED 5,800,000",
+
+  "project_info_title": "Tranquil Living at Six Senses Dubai Marina",
+  "project_info_text": "Where design meets exquisite elegance, these residences enhance the art of living by offering stylish interiors, grand views, and a sanctuary of peace amidst bustling urban life.\n\nCrafted for those who seek both luxury and tranquillity, this exclusive address delivers an unparalleled lifestyle by the sea.",
+  "project_info_cta_text": "Request Details",
+
+  "amenities_title": "Infrastructure and landscaping of the residential complex",
+  "amenities_1": "/images/projects/six-senses-residences-dubai-marina/amenities_1.png",
+  "amenities_1_label": "Infinity Pool",
+  "amenities_2": "/images/projects/six-senses-residences-dubai-marina/amenities_2.png",
+  "amenities_2_label": "Wellness & Spa",
+  "amenities_3": "/images/projects/six-senses-residences-dubai-marina/amenities_3.png",
+  "amenities_3_label": "Gymnasium",
+
+  "gallery_1": "/images/projects/six-senses-residences-dubai-marina/gallery_1.png",
+  "gallery_2": "/images/projects/six-senses-residences-dubai-marina/gallery_2.png",
+  "gallery_3": "/images/projects/six-senses-residences-dubai-marina/gallery_3.png",
+
+  "project_summary_title": "Elevated Coastal Living in Dubai Marina",
+  "project_summary_subtitle": "Artful Spaces of Timeless Elegance",
+
+  "summary_delivery_value": "July 2028",
+  "summary_delivery_label": "Delivery Date",
+  "summary_developer_value": "Select Group",
+  "summary_developer_label": "Master Developer",
+  "summary_type_value": "Apartment, Duplex, Penthouse",
+  "summary_type_label": "Property Type",
+  "summary_price_currency": "AED",
+  "summary_price_value": "5,800,000",
+  "summary_price_label": "Starting Price",
+
+  "units_gallery_1": "/images/projects/six-senses-residences-dubai-marina/units_gallery_1.png",
+  "units_gallery_2": "/images/projects/six-senses-residences-dubai-marina/units_gallery_2.png",
+  "units_gallery_3": "/images/projects/six-senses-residences-dubai-marina/units_gallery_3.png",
+
+  "units_gallery_title": "Available Units",
+  "units_bed_main": "2 Bedroom",
+  "units_bed_options": "3|4|5",
+  "units_price_from": "AED 5,800,000",
+  "units_area_from": "From 2008 SQFT",
+  "units_cta_text": "Book a consultation",
+
+  "map_title": "Location\nin Dubai",
+  "map_text": "Between the sea and the city, Dubai Marina's Six Senses Residences offers a sanctuary where sophisticated urban life meets tranquil marina views.\n\nSet amid exclusive boardwalks and luxury yachts, this locale embodies a serene yet vibrant atmosphere. Marvel at iconic attractions within easy reach while savoring the calm of waterfront living.",
+  "map_address": "Nakhlat Jumeira - Dubai",
+  "map_lat": 25.082000,
+  "map_lng": 55.138000,
+
+  "final_image": "/images/projects/six-senses-residences-dubai-marina/final.png",
+
+  "contact_form_title": "Looking for more?",
+  "contact_form_phone_label": "Phone number",
+  "contact_form_cta_text": "Enquire Now",
+
+  "footer_project_name": "Six Senses Residences Dubai Marina",
+  "footer_phone": "+971 52 825 4399",
+  "footer_cta_text": "Contact us",
+  "footer_powered_text": "Powered by Zack AI",
+  "footer_tagline": "Luxury residences in Dubai Marina"
+}

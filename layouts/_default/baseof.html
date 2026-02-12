@@ -1,19 +1,38 @@
-<!doctype html>
-<html lang="ru">
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang | default "en" }}">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{{ if .Title }}{{ .Title }}{{ else }}{{ site.Title }}{{ end }}</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Fonts (главная) -->
+  <title>
+    {{ if .IsHome }}
+      {{ .Site.Title }}
+    {{ else }}
+      {{ .Title }} · {{ .Site.Title }}
+    {{ end }}
+  </title>
+
+  <!-- Fonts: Montserrat (главная) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- CSS (главная) -->
-  <link rel="stylesheet" href="/css/personal.css">
+  {{/* CSS: строго раздельно */}}
+  {{ if and (not .IsHome) (eq .Section "projects") }}
+    <link rel="stylesheet" href="{{ "css/project.css" | relURL }}">
+  {{ else }}
+    <link rel="stylesheet" href="{{ "css/main.css" | relURL }}">
+  {{ end }}
+
+  {{ block "head" . }}{{ end }}
 </head>
-<body>
+
+<body class="
+  {{ if .IsHome }}page-home{{ end }}
+  {{ if and (not .IsHome) (eq .Section "projects") }}page-project{{ end }}
+  {{ if and (not .IsHome) (ne .Section "projects") }}page-results{{ end }}
+">
   {{ block "main" . }}{{ end }}
+  {{ block "scripts" . }}{{ end }}
 </body>
 </html>

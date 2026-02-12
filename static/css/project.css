@@ -955,11 +955,8 @@ project_info_default tokens:
  right: var(--spacing-units-gallery-info-panel-inset-x, 128px);
  bottom: 0;
 
-
  height: var(--size-units-gallery-info-panel-height, 100px);
-
-
- background: var(--color-bg-surface, #fff);
+ background: rgba(255, 255, 255, 0.3);
 
 
  /* верх скруглён, низ режется по экрану */

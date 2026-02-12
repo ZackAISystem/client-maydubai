@@ -1,0 +1,70 @@
+{
+  "project_name": "Serenia Living",
+  "hero_image": "/images/projects/serenia-living/hero.png",
+  "intro_image": "/images/projects/serenia-living/intro.png",
+  "promo_image": "/images/projects/serenia-living/promo.png",
+
+  "hero_cta_text": "Learn More",
+  "hero_fact_1_label": "Delivery Date",
+  "hero_fact_1_value": "December 2025",
+  "hero_fact_2_label": "Price from",
+  "hero_fact_2_value": "AED 7,100,000",
+
+  "project_info_title": "Tranquil Coastal Living at Palm Jumeirah",
+  "project_info_text": "Rising above the shimmering Arabian Sea, Serenia Living offers a sanctuary of elegance on Palm Jumeirah.\n\nCrafted for those who yearn for a seamless blend of style and comfort, these residences provide breathtaking panoramas and a serene escape, while celebrating the essence of coastal sophistication.",
+  "project_info_cta_text": "Request Details",
+
+  "amenities_title": "Infrastructure and landscaping of the residential complex",
+  "amenities_1": "/images/projects/serenia-living/amenities_1.png",
+  "amenities_1_label": "Infinity Pool",
+  "amenities_2": "/images/projects/serenia-living/amenities_2.png",
+  "amenities_2_label": "Kids Play Area",
+  "amenities_3": "/images/projects/serenia-living/amenities_3.png",
+  "amenities_3_label": "Gymnasium",
+
+  "gallery_1": "/images/projects/serenia-living/gallery_1.png",
+  "gallery_2": "/images/projects/serenia-living/gallery_2.png",
+  "gallery_3": "/images/projects/serenia-living/gallery_3.png",
+
+  "project_summary_title": "Life Along Palm Jumeirah's Edge",
+  "project_summary_subtitle": "Elevated Living with Artful Decor",
+
+  "summary_delivery_value": "December 2025",
+  "summary_delivery_label": "Delivery Date",
+  "summary_developer_value": "Palma Development",
+  "summary_developer_label": "Master Developer",
+  "summary_type_value": "Apartment, Penthouse",
+  "summary_type_label": "Property Type",
+  "summary_price_currency": "AED",
+  "summary_price_value": "7,100,000",
+  "summary_price_label": "Starting Price",
+
+  "units_gallery_1": "/images/projects/serenia-living/units_gallery_1.png",
+  "units_gallery_2": "/images/projects/serenia-living/units_gallery_2.png",
+  "units_gallery_3": "/images/projects/serenia-living/units_gallery_3.png",
+
+  "units_gallery_title": "Available Units",
+  "units_bed_main": "2 Bedroom",
+  "units_bed_options": "3|4|5",
+  "units_price_from": "AED 7,100,000",
+  "units_area_from": "From 1722 SQFT",
+  "units_cta_text": "Book a consultation",
+
+  "map_title": "Location\nin Dubai",
+  "map_text": "Positioned elegantly between the azure waters of the Arabian Gulf and the vibrant cityscape, Serenia Living invites you to embrace a lifestyle of unparalleled luxury on Palm Jumeirah.\n\nHere, amongst lush landscapes and steps away from iconic landmarks like Atlantis The Palm, residents experience a harmonious blend of tranquility and urban allure.",
+  "map_address": "Palm Jumeirah, Nakhlat Jumeira - Dubai",
+  "map_lat": 25.1124,
+  "map_lng": 55.1390,
+
+  "final_image": "/images/projects/serenia-living/final.png",
+
+  "contact_form_title": "Looking for more?",
+  "contact_form_phone_label": "Phone number",
+  "contact_form_cta_text": "Enquire Now",
+
+  "footer_project_name": "Serenia Living",
+  "footer_phone": "+971 52 825 4399",
+  "footer_cta_text": "Contact us",
+  "footer_powered_text": "Powered by Zack AI",
+  "footer_tagline": "Luxury beachfront residences in Dubai"
+}

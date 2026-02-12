@@ -1,0 +1,71 @@
+{
+  "project_name": "JW Marriott Residences Al Marjan",
+
+  "hero_image": "/images/projects/jw-marriott-residences-al-marjan/hero.png",
+  "intro_image": "/images/projects/jw-marriott-residences-al-marjan/intro.png",
+  "promo_image": "/images/projects/jw-marriott-residences-al-marjan/promo.png",
+
+  "hero_cta_text": "Learn More",
+  "hero_fact_1_label": "Delivery Date",
+  "hero_fact_1_value": "December 2027",
+  "hero_fact_2_label": "Price from",
+  "hero_fact_2_value": "AED 3,100,000",
+
+  "project_info_title": "Exclusive Retreats on Al Marjan Island",
+  "project_info_text": "Crafted for those who cherish true elegance, JW Marriott Residences harmonizes breathtaking sea views with Tony Ashai's signature modern style.\n\nDiscover a lifestyle enriched by premium amenities, featuring marble-clad interiors, serene lounges, and invigorating fitness spaces — all forming an oasis of luxury and refinement on Al Marjan Island.",
+  "project_info_cta_text": "Request Details",
+
+  "amenities_title": "Infrastructure and landscaping of the residential complex",
+  "amenities_1": "/images/projects/jw-marriott-residences-al-marjan/amenities_1.png",
+  "amenities_1_label": "Infinity Pool",
+  "amenities_2": "/images/projects/jw-marriott-residences-al-marjan/amenities_2.png",
+  "amenities_2_label": "Relaxation Lounge",
+  "amenities_3": "/images/projects/jw-marriott-residences-al-marjan/amenities_3.png",
+  "amenities_3_label": "Signature Restaurant",
+
+  "gallery_1": "/images/projects/jw-marriott-residences-al-marjan/gallery_1.png",
+  "gallery_2": "/images/projects/jw-marriott-residences-al-marjan/gallery_2.png",
+  "gallery_3": "/images/projects/jw-marriott-residences-al-marjan/gallery_3.png",
+
+  "project_summary_title": "Island Living with a Gulf View",
+  "project_summary_subtitle": "Elegant Designs by Tony Ashai",
+
+  "summary_delivery_value": "December 2027",
+  "summary_delivery_label": "Delivery Date",
+  "summary_developer_value": "WOW Resorts",
+  "summary_developer_label": "Master Developer",
+  "summary_type_value": "Apartment, Duplex",
+  "summary_type_label": "Property Type",
+  "summary_price_currency": "AED",
+  "summary_price_value": "3,100,000",
+  "summary_price_label": "Starting Price",
+
+  "units_gallery_1": "/images/projects/jw-marriott-residences-al-marjan/units_gallery_1.png",
+  "units_gallery_2": "/images/projects/jw-marriott-residences-al-marjan/units_gallery_2.png",
+  "units_gallery_3": "/images/projects/jw-marriott-residences-al-marjan/units_gallery_3.png",
+
+  "units_gallery_title": "Available Units",
+  "units_bed_main": "1 Bedroom",
+  "units_bed_options": "2|3|4",
+  "units_price_from": "AED 3,100,000",
+  "units_area_from": "From 950 SQFT",
+  "units_cta_text": "Book a consultation",
+
+  "map_title": "Location\nin Al Marjan Island",
+  "map_text": "Amid the cascading waves and golden sands of Al Marjan Island, JW Marriott Residences offers an unparalleled retreat crafted by WOW Resorts.\n\nHere, life’s luxuries are accentuated by nature’s splendor, with panoramic views of the Arabian Gulf, refined architecture, and world-class hospitality amenities at your doorstep.",
+  "map_address": "Al Marjan Island, Ras Al Khaimah, United Arab Emirates",
+  "map_lat": 25.666650,
+  "map_lng": 55.757000,
+
+  "final_image": "/images/projects/jw-marriott-residences-al-marjan/final.png",
+
+  "contact_form_title": "Looking for more?",
+  "contact_form_phone_label": "Phone number",
+  "contact_form_cta_text": "Enquire Now",
+
+  "footer_project_name": "JW Marriott Residences Al Marjan",
+  "footer_phone": "+971 52 825 4399",
+  "footer_cta_text": "Contact us",
+  "footer_powered_text": "Powered by Zack AI",
+  "footer_tagline": "Luxury apartments in the heart of Ras Al Khaimah"
+}

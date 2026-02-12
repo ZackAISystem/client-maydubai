@@ -1,0 +1,239 @@
+<section class="home-hero">
+  <div class="home-hero__wrap">
+
+    <!-- Background image -->
+    <img
+      class="home-hero__img"
+      src="{{ site.Data.site.home.hero_image }}"
+      alt="GetHome hero"
+    >
+
+    <!-- Search panel -->
+    <div class="home-hero__panel">
+
+      <!-- SEARCH FORM -->
+      <form
+        class="home-hero__search"
+        role="search"
+        aria-label="GetHome search"
+      >
+        <!-- search icon -->
+        <img
+          class="home-hero__icon home-hero__icon--search"
+          src="/images/search.png"
+          alt=""
+        >
+
+        <!-- INPUT -->
+        <input
+          class="home-hero__input"
+          type="text"
+          name="q"
+          placeholder="{{ site.Data.site.home.search_placeholder }}"
+          autocomplete="off"
+          data-typing-examples='["Waterfront residence on Al Marjan Island","Sea view apartment in Dubai Marina","Off-plan 1–2 bedroom appartment under 3M AED"]'
+         />
+
+        <!-- voice icon (пока просто иконка) -->
+        <img
+          class="home-hero__icon home-hero__icon--voice"
+          src="/images/voice.png"
+          alt=""
+        >
+
+        <!-- GET -->
+        <button class="home-hero__get" type="submit">
+          {{ site.Data.site.home.cta_get }}
+        </button>
+      </form>
+
+      <!-- chips -->
+      <div class="home-hero__chips">
+        {{ range site.Data.site.home.chips }}
+          <button
+            class="home-hero__chip"
+            type="button"
+            data-chip="{{ . }}"
+          >
+            {{ . }}
+          </button>
+        {{ end }}
+      </div>
+
+      <!-- caption -->
+      <div class="home-hero__caption">
+        {{ site.Data.site.home.caption }}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========== HERO SEARCH JS (локально, безопасно) ========== -->
+<script>
+(function () {
+  const hero = document.querySelector('.home-hero');
+  if (!hero) return;
+
+  const form  = hero.querySelector('.home-hero__search');
+  const input = hero.querySelector('.home-hero__input');
+  const chips = hero.querySelectorAll('.home-hero__chip');
+
+  if (!form || !input) return;
+
+  /* =========================
+     1) Chips → input (как было)
+  ========================= */
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const text = chip.dataset.chip || chip.textContent.trim();
+      const cur  = (input.value || '').trim();
+      input.value = cur ? (cur + ' · ' + text) : text;
+      stopTyping(); // если человек выбирает чип — прекращаем анимацию
+      input.focus();
+    });
+  });
+
+  /* =========================
+     2) Submit → показать results (как было)
+  ========================= */
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+
+    const results = document.getElementById('results');
+    const query   = document.getElementById('resultsQuery');
+
+    if (!results || !query) return;
+
+    const v = (input.value || '').trim();
+    if (v) query.textContent = v;
+
+    results.classList.add('is-open');
+    results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  /* =========================
+     3) AI typing placeholder (новое)
+     - печатаем в placeholder
+     - стоп при фокусе/вводе
+     - старт если пусто и blur
+  ========================= */
+  const examples = [
+    'Waterfront residence on Al Marjan Island',
+    'Sea view apartment in Dubai Marina',
+    'Off-plan 1–2 bedroom under 3M AED'
+  ];
+
+  const basePlaceholder = input.getAttribute('placeholder') || '';
+
+  let exIndex = 0;
+  let charIndex = 0;
+  let timer = null;
+  let paused = false;
+
+  const TYPE_SPEED = 38;     // скорость печати (мс)
+  const HOLD_END = 900;      // пауза на конце фразы
+  const HOLD_BETWEEN = 350;  // пауза перед стартом следующей
+
+  function isUserActive() {
+    return document.activeElement === input || ((input.value || '').trim().length > 0);
+  }
+
+  function tick() {
+    if (paused || isUserActive()) return;
+
+    const full = examples[exIndex];
+    const next = full.slice(0, charIndex + 1);
+
+    input.setAttribute('placeholder', next);
+
+    charIndex++;
+
+    if (charIndex >= full.length) {
+      timer = setTimeout(() => {
+        if (paused || isUserActive()) return;
+        exIndex = (exIndex + 1) % examples.length;
+        charIndex = 0;
+        input.setAttribute('placeholder', ''); // аккуратно “сбрасываем”
+        timer = setTimeout(tick, HOLD_BETWEEN);
+      }, HOLD_END);
+      return;
+    }
+
+    timer = setTimeout(tick, TYPE_SPEED);
+  }
+
+  function startTyping() {
+    if (timer) return;
+    paused = false;
+    charIndex = 0;
+    input.setAttribute('placeholder', '');
+    timer = setTimeout(tick, 250);
+  }
+
+  function stopTyping() {
+    paused = true;
+    if (timer) {
+      clearTimeout(timer);
+      timer = null;
+    }
+    // возвращаем базовый плейсхолдер только если поле пустое
+    if (!((input.value || '').trim().length)) {
+      input.setAttribute('placeholder', basePlaceholder);
+    }
+  }
+
+  // события пользователя — стоп
+  input.addEventListener('focus', stopTyping);
+  input.addEventListener('keydown', stopTyping);
+  input.addEventListener('input', stopTyping);
+
+  // если ушёл из поля и оно пустое — снова стартуем
+  input.addEventListener('blur', () => {
+    if (!((input.value || '').trim().length)) {
+      // небольшой таймаут, чтобы не дёргалось
+      stopTyping();
+      paused = false;
+      timer = null;
+      startTyping();
+    }
+  });
+
+  // автозапуск на загрузке (если поле пустое)
+  if (!((input.value || '').trim().length)) {
+    startTyping();
+  }
+
+  /* =========================
+     4) Clear (крестик) → закрыть results и начать заново
+  ========================= */
+  const results  = document.getElementById('results');
+  const queryEl  = document.getElementById('resultsQuery');
+  const clearBtn = document.getElementById('resultsClear');
+
+  function closeResults() {
+    if (results) results.classList.remove('is-open');
+    if (queryEl) queryEl.textContent = '';
+    input.value = '';
+    input.focus();
+
+    // вернуть базовый placeholder
+    stopTyping();
+
+    // снова запустить "бегущую строку", если поле пустое
+    if (!((input.value || '').trim().length)) {
+      paused = false;
+      timer = null;
+      startTyping();
+    }
+  }
+
+  if (clearBtn) {
+    clearBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      closeResults();
+    });
+  }
+
+})();
+</script>

@@ -1,0 +1,62 @@
+{
+  "brand": {
+    "name": "MayDubai",
+    "logo_header": "/images/hero-logo.png",
+    "logo_footer": "/images/footer-logo.png"
+  },
+  "contacts": {
+    "phone": {
+      "label": "+971 52 825 4399",
+      "href": "tel:+971528254399"
+    },
+    "email": {
+      "label": "info@maydubai.ai",
+      "href": "mailto:info@maydubai.ai"
+    }
+  },
+  "address": {
+    "text": "Dubai, UAE"
+  },
+  "socials": [
+    {
+      "name": "Instagram",
+      "icon": "/icons/instagram.png",
+      "url": "/"
+    },
+    {
+      "name": "LinkedIn",
+      "icon": "/icons/linkedin.png",
+      "url": "/"
+    },
+    {
+      "name": "Facebook",
+      "icon": "/icons/facebook.png",
+      "url": "/"
+    },
+    {
+      "name": "Telegram",
+      "icon": "/icons/telegram.png",
+      "url": "/"
+    },
+    {
+      "name": "WhatsApp",
+      "icon": "/icons/whatsapp.png",
+      "url": "/"
+    }
+  ],
+  "footer": {
+    "copyright": "© MayDubai — All rights reserved"
+  },
+  "home": {
+    "hero_image": "/images/hero-main.png",
+    "search_placeholder": "Discover your home, your way…",
+    "cta_get": "Search",
+    "chips": [
+      "Dubai",
+      "Abu Dhabi",
+      "Sharjah",
+      "Ras Al Khaimah"
+    ],
+    "caption": "Explore 2,000+ off-plan residences across the UAE"
+  }
+}

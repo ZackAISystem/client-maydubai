@@ -1,3 +1,3 @@
 ---
-title: "Svetlana Gorbova"
+title: "Home"
 ---

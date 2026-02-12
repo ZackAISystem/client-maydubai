@@ -1,0 +1,71 @@
+{
+  "project_name": "Velor",
+
+  "hero_image": "/images/projects/velor/hero.png",
+  "intro_image": "/images/projects/velor/intro.png",
+  "promo_image": "/images/projects/velor/promo.png",
+
+  "hero_cta_text": "Arrange a viewing",
+  "hero_fact_1_label": "Delivery Date",
+  "hero_fact_1_value": "Q4 2027",
+  "hero_fact_2_label": "Price from",
+  "hero_fact_2_value": "AED 8,250,000",
+
+  "project_info_title": "VELOR Luxury Penthouses",
+  "project_info_text": "VELOR is a refined residential landmark designed for elevated urban living.\n\nThe project combines bold contemporary architecture with privacy, space, and panoramic city views. Every residence is crafted with meticulous attention to detail, offering a calm, sophisticated lifestyle in the heart of the city.",
+  "project_info_cta_text": "Contact us",
+
+  "amenities_title": "Infrastructure and landscaping of the residential complex",
+  "amenities_1": "/images/projects/velor/amenities_1.png",
+  "amenities_1_label": "Infinity Pool",
+  "amenities_2": "/images/projects/velor/amenities_2.png",
+  "amenities_2_label": "Spa",
+  "amenities_3": "/images/projects/velor/amenities_3.png",
+  "amenities_3_label": "Gym",
+
+  "gallery_1": "/images/projects/velor/gallery_1.png",
+  "gallery_2": "/images/projects/velor/gallery_2.png",
+  "gallery_3": "/images/projects/velor/gallery_3.png",
+
+  "project_summary_title": "Elevated Living in Downtown",
+  "project_summary_subtitle": "Sophisticated Urban Penthouses",
+
+  "summary_delivery_value": "Q4 2027",
+  "summary_delivery_label": "Delivery Date",
+  "summary_developer_value": "Ginco Properties",
+  "summary_developer_label": "Master Developer",
+  "summary_type_value": "Penthouses",
+  "summary_type_label": "Property Type",
+  "summary_price_currency": "AED",
+  "summary_price_value": "8,250,000",
+  "summary_price_label": "Starting Price",
+
+  "units_gallery_1": "/images/projects/velor/units_gallery_1.png",
+  "units_gallery_2": "/images/projects/velor/units_gallery_2.png",
+  "units_gallery_3": "/images/projects/velor/units_gallery_3.png",
+
+  "units_gallery_title": "Available Units",
+  "units_bed_main": "4 Bedroom",
+  "units_bed_options": "5",
+  "units_price_from": "AED 8,250,000",
+  "units_area_from": "From 3500 SQFT",
+  "units_cta_text": "Book a consultation",
+
+  "map_title": "Location\nin Dubai",
+  "map_text": "Downtown District is one of the most prestigious and vibrant areas in the UAE, known for its iconic skyline and lifestyle destinations.\n\nThe district offers seamless access to business hubs, fine dining, luxury retail, and cultural landmarks. Well-connected roads and infrastructure make daily movement effortless.",
+  "map_address": "Nakhlat Jumeira - Dubai",
+  "map_lat": 25.1548,
+  "map_lng": 55.2272,
+
+  "final_image": "/images/projects/velor/final.png",
+
+  "contact_form_title": "Any other\nquestions?",
+  "contact_form_phone_label": "Phone number",
+  "contact_form_cta_text": "Arrange a viewing",
+
+  "footer_project_name": "Velor",
+  "footer_phone": "+971 58 858 9528",
+  "footer_cta_text": "Contact us",
+  "footer_powered_text": "Powered by Zack AI",
+  "footer_tagline": "Luxury apartments in the heart of Dubai"
+}

@@ -1,0 +1,71 @@
+{
+  "project_name": "One Residence",
+
+  "hero_image": "/images/projects/one-residence/hero.png",
+  "intro_image": "/images/projects/one-residence/intro.png",
+  "promo_image": "/images/projects/one-residence/promo.png",
+
+  "hero_cta_text": "Learn More",
+  "hero_fact_1_label": "Delivery Date",
+  "hero_fact_1_value": "March 2027",
+  "hero_fact_2_label": "Price from",
+  "hero_fact_2_value": "AED 1,200,000",
+
+  "project_info_title": "Contemporary Living at One Residence Dubai",
+  "project_info_text": "Unveil an exceptional lifestyle at One Residence, where modern design harmonizes with urban convenience.\n\nThis sanctuary in Downtown Dubai offers an ideal blend of sophistication and luxury, featuring sweeping views and finely crafted living spaces that redefine urban elegance in the heart of the city.",
+  "project_info_cta_text": "Request Details",
+
+  "amenities_title": "Infrastructure and landscaping of the residential complex",
+  "amenities_1": "/images/projects/one-residence/amenities_1.png",
+  "amenities_1_label": "Infinity Pool",
+  "amenities_2": "/images/projects/one-residence/amenities_2.png",
+  "amenities_2_label": "Wellness & Spa",
+  "amenities_3": "/images/projects/one-residence/amenities_3.png",
+  "amenities_3_label": "Kids Play Area",
+
+  "gallery_1": "/images/projects/one-residence/gallery_1.png",
+  "gallery_2": "/images/projects/one-residence/gallery_2.png",
+  "gallery_3": "/images/projects/one-residence/gallery_3.png",
+
+  "project_summary_title": "Urban Elegance at Your Doorstep",
+  "project_summary_subtitle": "Innovative Design Meets Luxury Living",
+
+  "summary_delivery_value": "March 2027",
+  "summary_delivery_label": "Delivery Date",
+  "summary_developer_value": "Ginco Properties",
+  "summary_developer_label": "Master Developer",
+  "summary_type_value": "Apartment",
+  "summary_type_label": "Property Type",
+  "summary_price_currency": "AED",
+  "summary_price_value": "1,200,000",
+  "summary_price_label": "Starting Price",
+
+  "units_gallery_1": "/images/projects/one-residence/units_gallery_1.png",
+  "units_gallery_2": "/images/projects/one-residence/units_gallery_2.png",
+  "units_gallery_3": "/images/projects/one-residence/units_gallery_3.png",
+
+  "units_gallery_title": "Available Units",
+  "units_bed_main": "1 Bedroom",
+  "units_bed_options": "2|3",
+  "units_price_from": "AED 1,200,000",
+  "units_area_from": "From 469 SQFT",
+  "units_cta_text": "Book a consultation",
+
+  "map_title": "Location\nin Dubai",
+  "map_text": "Set amid Dubai's evolving skyline, One Residence by Ginco Properties offers a lifestyle where urban rhythm meets serene waterfront living.\n\nSteps away from iconic landmarks such as the Burj Khalifa and Palm Jumeirah, this luxurious development is enveloped by vibrant boulevards and tranquil parks, crafting an exquisite oasis in a dynamic city.",
+  "map_address": "Downtown Dubai, Dubai, UAE",
+  "map_lat": 25.197197,
+  "map_lng": 55.274376,
+
+  "final_image": "/images/projects/one-residence/final.png",
+
+  "contact_form_title": "Looking for more?",
+  "contact_form_phone_label": "Phone number",
+  "contact_form_cta_text": "Enquire Now",
+
+  "footer_project_name": "One Residence",
+  "footer_phone": "+971 52 825 4399",
+  "footer_cta_text": "Contact us",
+  "footer_powered_text": "Powered by Zack AI",
+  "footer_tagline": "Luxury apartments in the heart of Dubai"
+}

@@ -1,1 +1,31 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml"><url><loc>https://example.org/projects/allegro-park/</loc></url><url><loc>https://example.org/projects/allegro-residences/</loc></url><url><loc>https://example.org/categories/</loc></url><url><loc>https://example.org/projects/chelsea-gardens/</loc></url><url><loc>https://example.org/projects/gateway-residences/</loc></url><url><loc>https://example.org/projects/</loc></url><url><loc>https://example.org/</loc></url><url><loc>https://example.org/tags/</loc></url><url><loc>https://example.org/projects/the-willows-residences/</loc></url></urlset>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>http://localhost:1318/projects/arthouse-residences/</loc>
+  </url><url>
+    <loc>http://localhost:1318/categories/</loc>
+  </url><url>
+    <loc>http://localhost:1318/projects/double-tree-by-hilton/</loc>
+  </url><url>
+    <loc>http://localhost:1318/projects/habtoor-grand-residences/</loc>
+  </url><url>
+    <loc>http://localhost:1318/</loc>
+  </url><url>
+    <loc>http://localhost:1318/projects/jw-marriott-residences-al-marjan/</loc>
+  </url><url>
+    <loc>http://localhost:1318/projects/one-residence/</loc>
+  </url><url>
+    <loc>http://localhost:1318/projects/</loc>
+  </url><url>
+    <loc>http://localhost:1318/projects/serenia-living/</loc>
+  </url><url>
+    <loc>http://localhost:1318/projects/six-senses-residences-dubai-marina/</loc>
+  </url><url>
+    <loc>http://localhost:1318/tags/</loc>
+  </url><url>
+    <loc>http://localhost:1318/projects/velor/</loc>
+  </url><url>
+    <loc>http://localhost:1318/projects/w-residence-al-marjan/</loc>
+  </url>
+</urlset>

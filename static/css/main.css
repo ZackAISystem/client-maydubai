@@ -1,0 +1,700 @@
+/* =========================
+   Reset
+========================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont,
+               "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: #ffffff;
+  color: #0f172a;
+  line-height: 1.5;
+}
+
+/* =========================
+   Layout helpers
+========================= */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.section {
+  padding: 48px 0;
+}
+
+.section--tight {
+  padding: 24px 0;
+}
+
+/* =========================
+   Basic elements
+========================= */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+input,
+textarea {
+  font-family: inherit;
+}
+
+/* =========================
+   Headings (минимум, без дизайна)
+========================= */
+h1, h2, h3, h4, h5 {
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* =========================
+   Utilities
+========================= */
+.hidden { display: none; }
+.text-center { text-align: center; }
+.mt-24 { margin-top: 24px; }
+.mb-24 { margin-bottom: 24px; }
+
+/* =========================
+   Page namespaces (пока пусто)
+========================= */
+.page-home {}
+.page-results {}
+.page-project {}
+
+/* =========================
+   Buttons (минимум)
+========================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 20px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 14px;
+  border: 1px solid transparent;
+  user-select: none;
+  transition: transform .08s ease, opacity .15s ease;
+}
+
+.btn:active { transform: translateY(1px); }
+
+.btn--primary {
+  background: #1e3a8a;
+  color: #ffffff;
+}
+
+.btn--primary:hover { opacity: 0.95; }
+
+/* =========================
+   Header min (Home logo)
+========================= */
+
+.site-header-min{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: 0;            /* чтобы не толкал контент */
+  z-index: 60;
+  pointer-events: none; /* чтобы хедер не ловил клики */
+}
+
+.site-header-min__logo{
+  position: absolute;
+  left: 37px;          /* Figma X */
+  top: 0px;            /* Figma Y */
+  width: 194px;        /* Figma W */
+  height: 129px;       /* Figma H */
+  display: block;
+  pointer-events: auto; /* кликается только лого */
+}
+
+.site-header-min__logo img{
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+/* =========================
+  Home Hero (main image + search panel)
+========================= */
+
+.home-hero{
+  padding: 0;
+  background: #ffffff;
+}
+
+/* Сцена под один экран */
+.home-hero__wrap{
+  position: relative; /* важно: панель позиционируется внутри */
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0;
+
+  height: 100vh;        /* ключ: один экран */
+  min-height: 720px;    /* страховка */
+  max-height: 900px;    /* чтобы не раздувало на больших мониторах */
+  overflow: hidden;
+}
+
+/* Картинка как фон-сцены (вписываем, не режем) */
+.home-hero__img{
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 65%;
+  display: block;
+
+  object-fit: contain;              /* растягивает */
+  object-position: center 35%;    /* опускаем фокус ниже */
+
+    transform: scale(1.5);  /* уменьшаем до 85% */
+}
+
+/* Panel positioning */
+.home-hero__panel{
+  position: absolute;
+  left: 130px;
+  right: 130px;
+  bottom: 50px;
+  height: 280px;
+
+  border-radius: 40px;
+  background: linear-gradient(90deg, #93D2FF 0%, #122F73 100%);
+}
+
+/* Search bar */
+.home-hero__search{
+  position: absolute;
+  left: 115px;
+  right: 115px;
+  top: 60px;
+
+  height: 80px;
+  border-radius: 999px;
+  background: #F0F0F0;
+  box-shadow: 0 10px 22px rgba(0,0,0,0.18);
+
+  display: flex;
+  align-items: center;
+}
+
+/* INPUT вместо плейсхолдера-спана (функционал без изменения дизайна) */
+.home-hero__input{
+  border: 0;
+  outline: none;
+  background: transparent;
+
+  /* сохраняем твои параметры текста */
+  margin-left: 95px;
+  font-weight: 500;
+  font-size: 25px;
+  color: #3E3E3E;
+  line-height: 1;
+
+  width: calc(100% - 95px - 35px - 150px - 17px - 35px); 
+  /* объяснение: место под левый отступ + иконку voice + кнопку Get + её отступы */
+
+  padding: 0;
+}
+
+/* Цвет плейсхолдера как был у спана */
+.home-hero__input::placeholder{
+  color: #9a9a9a;
+}
+
+/* Чтобы кнопка не выглядела как "button" в Safari */
+.home-hero__get{
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* Icons */
+.home-hero__icon{
+  width: 35px;
+  height: 35px;
+  display: block;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.home-hero__icon--search{ left: 35px; }
+
+/* Get button */
+.home-hero__get{
+  position: absolute;
+  right: 35px;
+  top: 15px;
+  bottom: 15px;
+
+  width: 150px;
+  border-radius: 999px;
+  background: #8EB144;
+  box-shadow: 0 10px 22px rgba(0,0,0,0.18);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-weight: 500; /* Montserrat Medium */
+  font-size: 25px;
+  color: #ffffff;
+}
+
+/* Voice icon: 17px left from Get */
+.home-hero__icon--voice{
+  right: calc(35px + 150px + 17px);
+}
+
+/* Chips */
+.home-hero__chips{
+  position: absolute;
+  left: 195px;
+  right: 195px;
+  top: 165px;
+
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.home-hero__chip{
+  background: #F0F0F0;
+  border-radius: 999px;
+  padding: 10px 18px;
+  box-shadow: 0 10px 22px rgba(0,0,0,0.18);
+
+  font-weight: 500;
+  font-size: 16px;
+  color: #3E3E3E;
+  white-space: nowrap;
+}
+
+/* Caption */
+.home-hero__caption{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 20px;
+
+  font-weight: 600;
+  font-size: 20px;
+  color: #ffffff;
+  text-align: center;
+}
+
+/* Низкие экраны: чуть ужимаем, чтобы точно без скролла */
+@media (max-height: 820px){
+  .home-hero__wrap{
+    min-height: 640px;
+  }
+
+  .home-hero__panel{
+    bottom: 30px;
+    height: 260px;
+  }
+
+  .home-hero__search{
+    top: 52px;
+  }
+
+  .home-hero__chips{
+    top: 152px;
+  }
+}
+
+/* =========================
+  Results (grid + sticky search)
+========================= */
+
+.results{
+  display: none;               /* скрыто до нажатия Get */
+  padding-top: 0;
+}
+
+.results.is-open{
+  display: block;
+}
+
+/* Sticky bar area */
+.results__sticky{
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  background: transparent;
+  padding-top: 50px;           /* 50px до верха экрана */
+}
+
+.results__sticky-inner{
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Search bar */
+.results__bar{
+  width: calc(100% - 200px);   /* 100px слева + 100px справа */
+  max-width: 1200px;
+  height: 56px;
+  border-radius: 999px;
+  background: #F0F0F0;
+  box-shadow: 0 10px 22px rgba(0,0,0,0.18);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding-left: 40px;          /* текст 40px слева */
+  padding-right: 40px;         /* крестик 40px справа */
+}
+
+/* text inside */
+.results__query{
+  font-weight: 500;
+  font-size: 16px;
+  color: #111827;
+
+  flex: 1;          /* ВАЖНО: занимает доступное место */
+  min-width: 0;     /* ВАЖНО: разрешаем ужиматься для ellipsis */
+  padding-right: 16px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* clear button */
+.results__clear{
+  flex: 0 0 auto;   /* ВАЖНО: не сжимается */
+  width: 44px;      /* увеличили зону клика */
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+
+/* крестик */
+.results__clear img{
+  width: 22px;      /* пусть будет аккуратный, но кликаем по 44×44 */
+  height: 22px;
+  display: block;
+}
+
+/* spacing from bar to cards */
+.results__grid{
+  margin-top: 40px;            /* 40px от плашки до объектов */
+  padding-left: 100px;         /* до краёв экрана 100 */
+  padding-right: 100px;
+  padding-bottom: 0;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 20px;            /* горизонталь 20 */
+  row-gap: 35px;               /* вертикаль 35 */
+}
+
+/* Card base */
+.results-card{
+  border-radius: 30px;
+  position: relative;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Gradient border 1px default */
+.results-card::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 30px;
+  padding: 1px; /* default 1px */
+  background: linear-gradient(90deg, #8DCBF9 0%, #163477 100%);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Hover: border becomes 4px */
+.results-card:hover::before{
+  padding: 4px;
+}
+
+/* Inner */
+.results-card__inner{
+  border-radius: 30px;
+  overflow: hidden;
+  background: #ffffff;
+  min-height: 240px;
+}
+
+/* Real image card */
+.results-card__img{
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Meta overlay */
+.results-card__meta{
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+
+  background: rgba(0,0,0,0.30);
+  border-radius: 18px;
+  padding: 14px 16px;
+}
+
+.results-card__title{
+  font-weight: 600; /* semibold */
+  font-size: 18px;
+  color: #ffffff;
+  margin-bottom: 6px;
+}
+
+.results-card__row{
+  font-weight: 500; /* medium */
+  font-size: 16px;
+  color: #ffffff;
+  line-height: 1.35;
+}
+
+/* Placeholders: empty squares */
+.results-card--placeholder .results-card__inner{
+  background: #ffffff;
+  min-height: 240px;
+}
+
+/* bottom space to footer */
+.results__bottom-space{
+  height: 100px; /* от объектов до футера 100px */
+}
+
+/* Responsive quick safety (не ломает десктоп) */
+@media (max-width: 1100px){
+  .results__grid{ grid-template-columns: repeat(2, 1fr); }
+  .results__bar{ width: calc(100% - 40px); }
+  .results__grid{ padding-left: 20px; padding-right: 20px; }
+}
+
+@media (max-width: 680px){
+  .results__grid{ grid-template-columns: 1fr; }
+}
+
+/* =========================
+   Footer (main)
+========================= */
+
+.site-footer {
+  background: #0B1F45;           /* твой темно-синий */
+  color: #ffffff;
+  height: 380px;
+}
+
+.site-footer * {
+  color: #ffffff;
+}
+
+.site-footer__inner {
+  position: relative;
+  height: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+
+  /* общий отступ слева/справа как ты сказал */
+  padding-left: 120px;
+  padding-right: 120px;
+}
+
+/* --- LOGO --- */
+.site-footer__logo {
+  position: absolute;
+  left: 120px;
+  top: 1px;
+
+  /* "подвинуть на глаз" влево — вот этот параметр крути */
+  transform: translateX(-75px);
+}
+
+.site-footer__logo img {
+  width: 324px;
+  height: 216px;
+  display: block;
+  object-fit: contain;
+}
+
+/* --- CONTACT PILLS: phone + email (В ОДИН РЯД) --- */
+.site-footer__contacts {
+  position: absolute;
+  right: 120px;
+  top: 60px;
+
+  display: flex;        /* важно */
+  flex-direction: row;  /* важно */
+  align-items: center;
+  gap: 15px;            /* между плашками 15 */
+}
+
+.footer-pill {
+  height: 52px;
+  padding: 0 22px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 999px;
+
+  background: transparent;
+
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont,
+               "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+
+  white-space: nowrap;
+}
+
+/* --- SOCIAL ICONS --- */
+.site-footer__social {
+  position: absolute;
+  right: 136px;
+  bottom: 142px;
+
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.footer-social {
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-social img {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+/* --- BOTTOM LINE: copyright left + address right --- */
+.site-footer__bottom {
+  position: absolute;
+  left: 120px;
+  right: 120px;
+  bottom: 87px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.site-footer__copyright,
+.site-footer__address {
+  font-size: 14px;
+  font-weight: 400;
+  opacity: 0.95;
+}
+
+.site-footer__address {
+  text-align: right;
+  max-width: 620px;
+}
+
+/* --- optional: mobile fallback --- */
+@media (max-width: 900px) {
+  .site-footer {
+    height: auto;
+    padding: 40px 0;
+  }
+
+  .site-footer__inner {
+    position: static;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .site-footer__logo,
+  .site-footer__contacts,
+  .site-footer__social,
+  .site-footer__bottom {
+    position: static;
+    transform: none;
+  }
+
+  .site-footer__contacts {
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+
+  .site-footer__social {
+    margin-top: 24px;
+  }
+
+  .site-footer__bottom {
+    margin-top: 28px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .site-footer__address {
+    text-align: left;
+    max-width: none;
+  }
+}
+
+/* =========================
+   Debug helper (опционально)
+========================= */
+/*
+.section {
+  outline: 1px dashed rgba(0,0,0,0.1);
+}
+*/
